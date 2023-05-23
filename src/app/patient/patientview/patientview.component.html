@@ -1,0 +1,67 @@
+<header>
+  <app-admin></app-admin>
+</header>
+
+<div class="row page-titles">
+  <div class="col-md-5 align-self-center">
+      <h4 class="text-themecolor">Patient List</h4>
+  </div>
+  <div class="col-md-7 align-self-center text-right">
+      <div class="d-flex justify-content-end align-items-center">
+          <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="javascript:void(0)" (click)="back()">Home</a></li>
+              <li class="breadcrumb-item active"> <a href="javascript:void(0)" (click)="create()">Create Profile</a></li>
+          </ol>
+      </div>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table color-bordered-table theme-bordered-table">
+      <thead>
+          <tr>
+              <th>Id</th>
+              <th> Name</th>
+              <th>DOB</th>
+              <th>Gender</th>
+              <th>ContactNo</th>
+              <th>Address</th>
+              <th>State</th>
+              <th>Country</th>
+              <th>City</th>
+              <th>Password</th>
+              <th>Email</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let patient of Patient;">
+              <td>{{patient.id}}</td>
+              <td>{{patient.name}}</td>
+              <td>{{patient.dob}}</td>
+              <td>{{patient.gender}}</td>
+              <td>{{patient.contactno}}</td>
+              <td>{{patient.address}}</td>
+              <td>{{patient.state}}</td>
+              <td>{{patient.country}}</td>
+              <td>{{patient.city}}</td>
+              <td>{{patient.password}}</td>
+              <td>{{patient.email}}</td>
+              <td class="">
+                <button (click)="appointment(patient.id)" class="btn btn-secondary">Appointment</button>
+
+                <button (click)="updatelist(patient.id)"class="btn btn-primary">Update</button>
+                <button (click)="deleteRow(patient.id)"class="btn btn-dark">Delete</button>
+                  </td>
+
+          </tr>
+
+      </tbody>
+  </table>
+</div>
+
+
+
+
+
+
+

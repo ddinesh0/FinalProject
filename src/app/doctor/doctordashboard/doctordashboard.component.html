@@ -1,0 +1,67 @@
+<header>
+  <!-- Sidebar -->
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-dark">
+    <div class="position-sticky">
+      <div class="list-group list-group-flush mx-3 mt-4">
+        <a href="" class="list-group-item list-group-item-action py-2 ripple bg-dark" >
+          <i class="fas fa-tachometer-alt fa-fw me-3" ></i><span  style="color: aliceblue;">Main dashboard</span>
+        </a>
+        <a routerLink="/doctorspace" routerLinkActive="active" class="list-group-item list-group-item-action py-2 ripple bg-dark">
+          <i class="fas fa-chart-area fa-fw me-3"></i><span style="color: aliceblue;">My Space</span>
+        </a>
+        <a routerLink="/doctorpath" routerLinkActive="active" class="list-group-item list-group-item-action py-2 ripple bg-dark">
+          <i class="fas fa-chart-pie fa-fw me-3"></i><span  style="color: aliceblue;">Appointment</span>
+        </a>
+
+      </div>
+    </div>
+  </nav>
+  <!-- Sidebar -->
+
+  <!-- Navbar -->
+  <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#sidebarMenu"
+        aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Brand -->
+      <a class="navbar-brand" style="color: aliceblue;" >
+        <h1>Doctor</h1>
+      </a>
+
+
+      <!-- Right links -->
+      <ul class="navbar-nav ms-auto d-flex flex-row">
+        <!-- Notification dropdown -->
+        <div class="dropdown">
+          <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Hendry
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+            <li><a class="dropdown-item" routerLink='/signin' routerLinkActive="active">Log Out</a></li>
+          </ul>
+        </div>
+
+
+
+
+        <!-- Avatar -->
+
+      </ul>
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+</header>
+<!--Main Navigation-->
+
+<!--Main layout-->
+<main style="margin-top: 58px;">
+  <div class="container pt-4"></div>
+</main>
+

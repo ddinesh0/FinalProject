@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-sm navbar-da" style="background-color:black">
+  <div class="container-fluid">
+
+     <ul class = "nav navbar-nav">
+
+
+
+      </ul>
+
+  </div>
+</nav>
+<div style="background-image: url('https://www.comohotels.com/sites/default/files/COMO_Metropolitan_Miami_Beach_ZOOM_Backgrounds_4_0.jpg');background-repeat: no-repeat;background-attachment: fixed; background-size: cover;">
+  <div class="row d-flex justify-content-center">
+      <div class="col-lg-4">
+         <h2 style="text-align: center;"class="fw-bold mb-5"><b style="color:mediumblue">Update</b></h2>
+              <form #registerform="ngForm" (ngSubmit)="Update()">
+        <!-- {{registerform.form.valid}} -->
+        <!-- 2 column grid layout with text inputs for the first and last names -->
+                 <div class="row">
+                      <div class="col-md-6 mb-4">
+                         <div class="form-outline">
+                             <input type="text" name="adminName" class="form-control" placeholder="adminName" [(ngModel)]="admin.adminName" required pattern="[A-Za-z]{1,32}" #adminName="ngModel"
+                                [class.is-invalid]="adminName.invalid&&adminName.touched"/>
+              <!-- <small class="text-danger" [class.d-none]="firstname.valid||firstname.untouched">Required field</small> -->
+                                   <div *ngIf="adminName.errors && (adminName.invalid && adminName.touched)">
+                                        <small class="text-danger" *ngIf="adminName.errors?.['required']">required field</small>
+                                        <small class="text-danger"*ngIf="adminName.errors?.['pattern']">enter a valid name</small>
+                                   </div>
+                          </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                              <input type="text" name="adminEmailId" class="form-control" placeholder="adminEmailId" [(ngModel)]="admin.adminEmailId" pattern="[A-Za-z0-9._%+-]{2,}@[a-zA-Z]{1,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" #adminEmailId="ngModel"
+                                  [class.is-invalid]="adminEmailId.invalid"/>
+                         <!-- <small class="text-danger" [class.d-none]="firstname.valid||firstname.untouched">Required field</small> -->
+                                 <div *ngIf="adminEmailId.errors ">
+                                      <small class="text-danger" *ngIf="adminEmailId.errors?.['required']">required field</small>
+                                       <small class="text-danger"*ngIf="adminEmailId.errors?.['pattern']">enter a valid email</small>
+                                 </div>
+
+                                 </div>
+                                 </div>
+                                <!-- Password input -->
+      <div class="form-outline mb-4">
+        <input type="password" name="adminPassword" class="form-control" placeholder="adminPassword" [(ngModel)]="admin.adminPassword" required  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+        title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+        #adminPassword="ngModel"          [class.is-invalid]="adminPassword.invalid && adminPassword.touched"/>
+
+        <!-- <small class="text-danger" [class.d-none]="password.valid||password.untouched">Required field</small> -->
+        <div *ngIf="adminPassword.errors && (adminPassword.invalid && adminPassword.touched)">
+          <small class="text-danger" *ngIf="adminPassword.errors?.['required']">password is required</small>
+          <small class="text-danger"*ngIf="adminPassword.errors?.['pattern']">must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters</small>
+        </div>
+      </div>
+
+        <!-- Submit button -->
+        <button [disabled]="registerform.form.invalid" type="submit" class="btn btn-primary btn-block mb-4">
+         Update
+        </button>
+        <!--<div style="text-align: right;">
+        <a routerLink="/adminlogin" routerLinkActive="active" class="nav-link" ><b style="color:mediumblue">Already a user?</b> <b style="color: red;">Login now</b></a></div>-->
+        </div>
+      </form></div></div></div>
+     <div>
+       <br>
+       <br><br><br>
+<span id="copyright"style="text-align:center"><b style="color: oldlace;">&reg;All rights reserved</b></span>
+</div>

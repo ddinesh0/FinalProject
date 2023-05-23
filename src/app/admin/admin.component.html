@@ -1,0 +1,88 @@
+
+<header>
+  <!-- Sidebar -->
+
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+    <div class="position-sticky">
+      <div class="list-group list-group-flush mx-3 mt-4">
+        <a  class="list-group-item list-group-item-action py-2 ripple">
+          <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
+        </a>
+        <a routerLink="/myspace/1" routerLinkActive="active" class="list-group-item list-group-item-action py-2 ripple ">
+          <i class="fas fa-chart-area fa-fw me-3"></i><span>My Space</span>
+        </a>
+
+        <a routerLink="/doctordetails" routerLinkActive="active" class="list-group-item list-group-item-action py-2 ripple"><i class="fa-solid fa-stethoscope"></i><span>Doctors List</span></a>
+            <i class="bx bxs-chevron-down arrow"></i>
+
+
+        <a routerLink="/patientview" routerLinkActive="active" class="list-group-item list-group-item-action py-2 ripple"><i class="fa-sharp fa-regular fa-hospital-user"></i>
+          <span>Patient List</span>
+        </a>
+
+        <a  routerLink="/appointmentlist" routerLinkActive="active" class="list-group-item list-group-item-action py-2 ripple">
+          <i class="fas fa-chart-pie fa-fw me-3"></i><span>Appointment</span>
+        </a>
+
+      </div>
+    </div>
+  </nav>
+  <!-- Sidebar -->
+
+  <!-- Navbar -->
+  <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow mb-5 bg-white rounded">
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <label >
+        <input type="checkbox" >
+        <div class="toggle">
+          <span class="top_line common"></span>
+          <span class="middle_line common"></span>
+          <span class="bottom_line common"></span>
+        </div>
+      </label>
+              <!-- Toggle button -->
+      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#sidebarMenu"
+        aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Brand -->
+      <a class="navbar-brand" >
+
+        <h1>Admin</h1>
+      </a>
+
+
+      <!-- Right links -->
+      <!-- Right links -->
+      <ul class="navbar-nav ms-auto d-flex flex-row">
+        <!-- Notification dropdown -->
+        <div class="dropdown">
+          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Profile
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+            <li><a class="dropdown-item" routerLink='/signin' routerLinkActive="active">Log Out</a></li>
+          </ul>
+        </div>
+
+
+
+
+        <!-- Avatar -->
+
+      </ul>
+    </div>
+    <!-- Container wrapper -->
+
+  </nav>
+  <!-- Navbar -->
+</header>
+<!--Main Navigation-->
+
+<!--Main layout-->
+<main style="margin-top: 58px;">
+  <div class="container pt-4"></div>
+</main>

@@ -1,0 +1,43 @@
+
+<header>
+  <app-admin></app-admin>
+
+<header class="modal-body">
+  <body>
+    <nav class="navbar navbar-expand-sm navbar-da" style="background-color:whitesmoke">
+    <div class="container-fluid">
+
+      <h2>Admin profile</h2>
+
+       <ul class = "nav navbar-nav">
+
+        <button (click)="Update()"class="btn btn-primary navbar-btn">Update</button>
+        <!-- <button (click)="Back()"class="btn btn-secondary navbar-btn">Back</button> -->
+        </ul>
+
+    </div>
+  </nav>
+
+
+
+  <div class="row">
+          <div class="form-group col-3">
+              <label> <font color="blue">ID</font></label><br/>
+              <span class="text">{{admin.adminId}}</span>
+          </div>
+          <div class="form-group col-3">
+              <label><font color="blue">Name</font></label><br/>
+              <span class="text">{{admin.adminName}}</span>
+         </div>
+          <div class="form-group col-3">
+              <label><font color="blue">EmailID</font></label><br/>
+              <span class="text">{{admin.adminEmailId}}</span>
+          </div>
+          <div class="form-group col-3">
+              <label><font color="blue">Password</font></label><br/>
+              <span class="text">{{admin.adminPassword}}</span>
+          </div>
+      </div>
+    </body>
+
+      </header>

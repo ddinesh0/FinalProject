@@ -1,0 +1,125 @@
+
+<nav class="navbar navbar-expand-sm navbar-da" style="background-color:gray">
+  <div class="container-fluid">
+
+    <h2>Doctor</h2>
+
+     <ul class = "nav navbar-nav">
+
+      <button (click)="back()"class="btn btn-primary navbar-btn">Go Back</button>
+
+      </ul>
+
+  </div>
+</nav>
+<!-- <div style="background-image: url('https://www.comohotels.com/sites/default/files/COMO_Metropolitan_Miami_Beach_ZOOM_Backgrounds_4_0.jpg');background-repeat: no-repeat;background-attachment: fixed; background-size: cover;"> -->
+  <div class="row d-flex justify-content-center">
+      <div class="col-lg-4">
+         <h2 style="text-align: center;"class="fw-bold mb-5"><b style="color:mediumblue">Create Profile</b></h2>
+              <form #registerform="ngForm" (ngSubmit)="doctorprofile()">
+        <!-- {{registerform.form.valid}} -->
+        <!-- 2 column grid layout with text inputs for the first and last names -->
+                 <div class="row">
+                      <div class="col-md-6 mb-4">
+                         <div class="form-outline">
+                             <input type="text" name="f_name" class="form-control" placeholder="First Name" [(ngModel)]="doctor.firstName" required pattern="[A-Za-z]{1,32}" #firstName="ngModel"
+                                [class.is-invalid]="firstName.invalid&&firstName.touched"/>
+              <!-- <small class="text-danger" [class.d-none]="firstname.valid||firstname.untouched">Required field</small> -->
+                                   <div *ngIf="firstName.errors && (firstName.invalid && firstName.touched)">
+                                        <small class="text-danger" *ngIf="firstName.errors?.['required']">required field</small>
+                                        <small class="text-danger"*ngIf="firstName.errors?.['pattern']">enter a valid name</small>
+                                   </div>
+                          </div>
+                      </div>
+                      <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                              <input type="text" name="lastName" class="form-control" placeholder="Last Name" [(ngModel)]="doctor.lastName"  #lastName="ngModel"
+                                  [class.is-invalid]="lastName.invalid"/>
+                         <!-- <small class="text-danger" [class.d-none]="firstname.valid||firstname.untouched">Required field</small> -->
+                                 <div *ngIf="lastName.errors ">
+                                      <small class="text-danger" *ngIf="lastName.errors?.['required']">required field</small>
+                                       <small class="text-danger"*ngIf="lastName.errors?.['pattern']">enter a valid lname</small>
+                                 </div>
+
+                                 </div>
+                                 </div>
+                                 <!-- doctor department-->
+                                 <div class="col-md-6 mb-4">
+                                  <div class="form-outline">
+                                      <input type="text" name="department" class="form-control" placeholder="department" [(ngModel)]="doctor.department"  #department="ngModel"/>
+
+
+                                         </div>
+                                         </div>
+                                         <div class="col-md-6 mb-4">
+                                          <div class="form-outline">
+                                              <input type="text" name="qualification" class="form-control" placeholder="Qualification" [(ngModel)]="doctor.qualification"  #qualification="ngModel"/>
+
+
+                                                 </div>
+                                                 </div>
+                                                 <div class="col-md-6 mb-4">
+                                                  <div class="form-outline">
+                                                      <input type="text" name="experience" class="form-control" placeholder="experience" [(ngModel)]="doctor.experience"  #experience="ngModel"/>
+                                                         </div>
+                                                         </div>
+
+
+
+
+
+
+                                         <!-- patient country-->
+
+                                                          <!-- patient contactno-->
+                                                 <div class="col-md-6 mb-4">
+                                                  <div class="form-outline">
+                                                      <input type="text" name="contactno" class="form-control" placeholder="contactno" [(ngModel)]="doctor.contactno"  #contactno="ngModel"
+                                                         />
+
+                                                         </div>
+
+                                                         </div>
+                                                         </div>
+
+                                                         <!-- patient emailId-->
+                                                         <div class="form-outline mb-4">
+                                                          <div class="form-outline">
+                                                              <input type="text" name="email" class="form-control" placeholder="email" [(ngModel)]="doctor.email" pattern="[A-Za-z0-9._%+-]{2,}@[a-zA-Z]{1,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"  #email="ngModel"
+                                                                  [class.is-invalid]="email.invalid"/>
+                                                         <!-- <small class="text-danger" [class.d-none]="firstname.valid||firstname.untouched">Required field</small> -->
+                                                                 <div *ngIf="email.errors ">
+                                                                      <small class="text-danger" *ngIf="email.errors?.['required']">required field</small>
+                                                                       <small class="text-danger"*ngIf="email.errors?.['pattern']">enter a valid email</small>
+                                                                 </div>
+
+                                                                 </div>
+                                                                 </div>
+                                <!-- Password input -->
+      <div class="form-outline mb-4">
+        <input type="password" name="password" class="form-control" placeholder="password" [(ngModel)]="doctor.password" required  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+        title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+        #password="ngModel"          [class.is-invalid]="password.invalid && password.touched"/>
+
+        <!-- <small class="text-danger" [class.d-none]="password.valid||password.untouched">Required field</small> -->
+        <div *ngIf="password.errors && (password.invalid && password.touched)">
+          <small class="text-danger" *ngIf="password.errors?.['required']">password is required</small>
+          <small class="text-danger"*ngIf="password.errors?.['pattern']">must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters</small>
+        </div>
+      </div>
+
+        <!-- Submit button -->
+        <button [disabled]="registerform.form.invalid" type="submit" class="btn btn-primary btn-block mb-4">
+         Create
+        </button>
+        <!-- <p>Do you have account</p><a routerLink="adminlogin" routerLinkActive="active" class="nav-link">Log in</a> -->
+        <!--<div style="text-align: right;">
+        <a routerLink="/adminlogin" routerLinkActive="active" class="nav-link" ><b style="color:mediumblue">Already a user?</b> <b style="color: red;">Login now</b></a></div>-->
+
+      <!-- </form></div></div></div> -->
+
+
+       <br>
+       <br><br><br>
+
+<span id="copyright"style="text-align:center"><b style="color: oldlace;">&reg;All rights reserved</b></span>

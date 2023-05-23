@@ -1,0 +1,74 @@
+<header>
+  <app-admin></app-admin>
+</header>
+
+<nav class="shadow-lg p-2 mb-3 bg-white rounded">
+<div class="row page-titles">
+  <div class="col-md-5 align-self-center">
+      <h4 class="text-themecolor">Doctor List</h4>
+  </div>
+  <div class="col-md-7 align-self-center text-right">
+      <div class="d-flex justify-content-end align-items-center">
+          <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="javascript:void(0)" (click)="back()">Home</a></li>
+              <li class="breadcrumb-item active"> <a href="javascript:void(0)" (click)="create()">Create Profile</a></li>
+          </ol>
+      </div>
+  </div>
+</div>
+</nav>
+
+
+<div class="table-responsive">
+  <table class="table color-bordered-table theme-bordered-table">
+      <thead>
+          <tr>
+              <th>Doctor Id</th>
+              <th>Doctor Frist Name</th>
+              <th>Doctor Last Name</th>
+              <th>Department</th>
+              <th>Qualification</th>
+              <th>Experience</th>
+              <th>ContactNo</th>
+              <th>Password</th>
+              <th>Email</th>
+
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let doctor of Doctor;">
+              <td>{{doctor.id}}</td>
+              <td>{{doctor.firstName}}</td>
+              <td>{{doctor.lastName}}</td>
+              <td>{{doctor.department}}</td>
+              <td>{{doctor.qualification}}</td>
+              <td>{{doctor.experience}}</td>
+              <td>{{doctor.contactno}}</td>
+              <td>{{doctor.email}}</td>
+              <td>{{doctor.password}}</td>
+              <td >
+
+                <button (click)="updatelist(doctor.id)"class="btn btn-primary">Update</button>
+                <button (click)="deleteRow(doctor.id)"class="btn btn-dark">Delete</button>
+                  </td>
+
+          </tr>
+
+      </tbody>
+  </table>
+<footer>
+  <div>
+    <br>
+    <br><br><br>
+<span id="copyright"style="text-align:center"><b style="color: black;">&reg;All rights reserved</b></span>
+</div>
+</footer>
+
+</div>
+
+
+
+
+
+
+
