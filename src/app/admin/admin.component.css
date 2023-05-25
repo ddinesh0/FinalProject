@@ -76,68 +76,6 @@ body {
     pointer-events: auto;
     transition: all 0.4s ease;
   }
-  .sidebarMenu{
-    position: absolute;
-    height: 30px;
-    width: 30px;
-    top: 20px;
-    left: 15px;
-    z-index: 1;
-    cursor: pointer;
-    border-radius: 2px;
-    background-color: red;
-    box-shadow: white;
-  }
-  .sidebarMenu .common{
-    position: absolute;
-    height: 2px;
-    width: 20px;
-    background-color: purple;
-    border-radius: 50px;
-    transform: 0.3s ease;
-
-  }
-  .sidebarMenu.top_line{
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-  }
-  .sidebarMenu.middle_line{
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-  }
-  .sidebarMenu.bottom_line{
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-  }
-  .sidebarMenu{
-transition: 0.5s ease;
-transform: translateX(-180px);
-  }
-
-  input:checked~.sidebarMenu.top_line{
-    left: 20px;
-    top: 14px;
-    width: 25px;
-    transform: rotate(45deg);
-  }
-
-  input:checked~.sidebarMenu.middle_line{
-    left: 20px;
-    top: 14px;
-    width: 25px;
-    transform: rotate(-45deg);
-  }
-
-  input:checked~.sidebarMenu.bottom_line{
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  input:checked~.sidebarMenu{
-    transform: translateX(0);
-  }
 
 
 

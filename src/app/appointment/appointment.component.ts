@@ -57,4 +57,6 @@ this.patientService.getbypatientid(this.id).subscribe(data=>{
 
   }
 
+
+
 }

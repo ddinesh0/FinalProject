@@ -2,7 +2,7 @@
 <header>
   <!-- Sidebar -->
 
-  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white" *ngIf="collapses">
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
         <a  class="list-group-item list-group-item-action py-2 ripple">
@@ -34,18 +34,13 @@
     <!-- Container wrapper -->
     <div class="container-fluid">
       <label >
-        <input type="checkbox" >
-        <div class="toggle">
-          <span class="top_line common"></span>
-          <span class="middle_line common"></span>
-          <span class="bottom_line common"></span>
-        </div>
+        <a href="javascript:void(0);"  class="icon" (click)="collopse()">
+          <i class="fa fa-bars"></i>
+        </a>
+
       </label>
               <!-- Toggle button -->
-      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#sidebarMenu"
-        aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-        <i class="fas fa-bars"></i>
-      </button>
+
 
       <!-- Brand -->
       <a class="navbar-brand" >

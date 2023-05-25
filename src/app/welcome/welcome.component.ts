@@ -1,5 +1,6 @@
 import { Component,OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Appointment } from 'src/app/appointment';
 
 @Component({
   selector: 'app-welcome',
@@ -8,7 +9,8 @@ import { Router } from '@angular/router';
 })
 export class WelcomeComponent implements OnInit{
 
-myimage:string="assets/image/Hospital_bg.jpg";
+  appointment1:Appointment=new Appointment();
+
 
   constructor(private router:Router){
 

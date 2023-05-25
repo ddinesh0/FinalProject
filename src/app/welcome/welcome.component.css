@@ -1,4 +1,93 @@
-h2{
+h2,h4{
+  align-items: center;
 
     font-family: "Times New Roman", Times, serif;
 }
+
+      /* img {
+        vertical-align: middle;
+      } */
+
+
+selection{
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+section:nth-child(1){
+  color: rgb(253, 253, 253);
+  background: black;
+
+
+}
+section:nth-child(2){
+  color: black;
+  background: whitesmoke;
+
+}
+section:nth-child(3){
+  color: rgb(255, 255, 255);
+  background: gray;
+
+}
+section:nth-child(4){
+  color: black;
+  background: whitesmoke;
+
+}
+section:nth-child(5){
+  color: rgb(255, 255, 255);
+  background: gray;
+
+}
+section:nth-child(6){
+  color: black;
+  background: whitesmoke;
+
+}
+/*
+section.container{
+  margin: 100px;
+}
+section h3{
+text-align: center;
+
+}
+section .cards .text-card{
+  margin: 20px;
+  padding: 20px;
+}*/
+.reveal{
+  position: relative;
+  transform: translateX(150px);
+  opacity: 0;
+  transition: all 1s ease;
+}
+.reveal .active{
+
+  transform: translateX(10px);
+  opacity: 1;
+}
+.
+
+.row-lg-3{
+  width: 100%;
+  overflow: hidden;
+  animation: scroll-left 2s ;
+}
+.row-lg-3{
+   display: inline-block;
+
+  animation: scroll-left 2s ;
+}
+@keyframes scroll-left {
+  0% {
+    transform: translateX(100%);
+  }
+
+}
+img{
+  max-width: 265px;
+  float: left;
+}
+
