@@ -1,0 +1,66 @@
+
+
+
+<body>
+  <div class="container">
+    <div class="profile" >
+      <div class="close" (click)="close()">
+        &times;
+
+      </div>
+      <img src="assets/image/user.png" style="width: 20%;" alt="srp video" class="photo">
+      <h1>DR.{{doctor.firstName}}</h1>
+      <span class="text">{{doctor.email}}</span><br>
+      <label> <font color="blue">Contactno:  </font></label>
+            <span class="text">{{doctor.contactno}}</span><br>
+            <label><font color="blue">Department:-</font></label>
+            <span class="text">{{doctor.department}}</span><br>
+            <label><font color="blue">Qualification:</font></label>
+            <span class="text">{{doctor.qualification}}</span><br>
+            <label><font color="blue">Experience:</font></label>
+            <span class="text">{{doctor.experience}}</span><br><br><br>
+            <button (click)="downloadPDF()" class="btn btn-primary navbar-btn" ><i class="bi bi-file-pdf"> </i>Pdf</button>
+
+
+    </div>
+  </div>
+</body>
+
+
+<!-- <div class="overlay">
+  <div class="row"
+style="margin-top: 10%;margin-bottom: 10%;"
+*ngIf="shows">
+<div class="close" (click)="close()">
+  &times;
+
+</div>
+
+          <div class="form-group col-3">
+              <label> <font color="blue">ID</font></label><br/>
+              <span class="text">{{doctor.id}}</span>
+          </div>
+          <div class="form-group col-3">
+              <label><font color="blue">Name</font></label><br/>
+              <span class="text">{{doctor.firstName}}</span>
+         </div>
+          <div class="form-group col-3">
+              <label><font color="blue">EmailID</font></label><br/>
+              <span class="text">{{doctor.email}}</span>
+          </div>
+
+        <div class="form-group col-3">
+            <label> <font color="blue">Contactno</font></label><br/>
+            <span class="text">{{doctor.contactno}}</span>
+        </div>
+        <div class="form-group col-3">
+            <label><font color="blue">Department</font></label><br/>
+            <span class="text">{{doctor.department}}</span>
+       </div>
+        <div class="form-group col-3">
+            <label><font color="blue">Qualification</font></label><br/>
+            <span class="text">{{doctor.qualification}}</span>
+        </div>
+      </div>
+  </div> -->
+

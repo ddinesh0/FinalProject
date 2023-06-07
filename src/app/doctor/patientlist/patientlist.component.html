@@ -1,0 +1,49 @@
+<div class="overlay" *ngIf="show">
+  <div class="content">
+    <div class="close" (click)="closepopup()">
+      &times;
+    </div>
+    <table class="table color-bordered-table theme-bordered-table">
+      <thead>
+          <tr>
+              <th>Id</th>
+              <th> Name</th>
+              <th>DOB</th>
+              <th>Gender</th>
+              <th>ContactNo</th>
+              <th>Address</th>
+              <th>State</th>
+              <th>Country</th>
+              <th>City</th>
+              <th>Password</th>
+              <th>Email</th>
+          </tr>
+      </thead>
+      <tbody>
+        <!-- <div   class="row" *ngIf="searchText ===''||patient.name.toLowerCase().includes(searchText)"> -->
+          <tr *ngFor="let patient of Patient">
+
+              <td >{{patient.id}}</td>
+              <td >{{patient.name}}</td>
+              <td >{{patient.dob}}</td>
+              <td >{{patient.gender}}</td>
+              <td >{{patient.contactno}}</td>
+              <td >{{patient.address}}</td>
+              <td >{{patient.state}}</td>
+              <td >{{patient.country}}</td>
+              <td >{{patient.city}}</td>
+              <td >{{patient.password}}</td>
+              <td >{{patient.email}}</td>
+
+
+
+
+          </tr>
+
+
+
+      </tbody>
+
+  </table>
+  </div>
+</div>

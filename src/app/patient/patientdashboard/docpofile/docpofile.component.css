@@ -1,0 +1,28 @@
+.close{
+  margin-left: 95%;
+  font-size: xx-large;
+}
+.text{
+  font-weight: bold;
+
+}
+.container{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.profile{
+  background: rgb(204, 176, 176);
+  text-align: center;
+  padding: 40px,90px;
+  color: aliceblue;
+  position: relative;
+  border-radius: 20px;
+  width: 50%;
+  height: 91%;
+
+
+}
