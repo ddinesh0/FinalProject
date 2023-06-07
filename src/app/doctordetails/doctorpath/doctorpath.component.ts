@@ -33,5 +33,9 @@ export class DoctorpathComponent implements OnInit{
 
     });
   }
+  closepopup() {
+    this.router.navigate(['/dashboard'])
+
+    }
 
 }

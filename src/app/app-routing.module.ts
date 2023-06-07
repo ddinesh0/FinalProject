@@ -18,9 +18,11 @@ import { DoctorspaceComponent } from './doctorspace/doctorspace.component';
 import { UserloginComponent } from './userlogin/userlogin.component';
 import { AppointmentlistComponent } from './appointment/appointmentlist/appointmentlist.component';
 import { DoctorpathComponent } from './doctordetails/doctorpath/doctorpath.component';
+import { PatientdashboardComponent } from './patient/patientdashboard/patientdashboard.component';
+import { PatientlistComponent } from './doctor/patientlist/patientlist.component';
+import { DocpofileComponent } from './patient/patientdashboard/docpofile/docpofile.component';
 
-
-const routes: Routes = [{path: '', component:WelcomeComponent},
+const routes: Routes = [
 {path: 'welcomepage', component:WelcomeComponent},
 {path: 'signup', component:SignupComponent},
 {path: 'signin', component:SigninComponent},
@@ -39,16 +41,14 @@ const routes: Routes = [{path: '', component:WelcomeComponent},
 {path:'userlogin',component:UserloginComponent},
 {path:'appointment/:id',component:AppointmentComponent},
 {path:'appointmentlist',component:AppointmentlistComponent},
-{path:'doctorpath',component:DoctorpathComponent}
+{path:'doctorpath',component:DoctorpathComponent},
+{path:'patientdash',component:PatientdashboardComponent},
+{path:'patientlist',component:PatientlistComponent},
+{path:'docprofile/:id',component:DocpofileComponent}
 
 ]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-
-
-
-
-
 exports: [RouterModule]
 })
 export class AppRoutingModule { }

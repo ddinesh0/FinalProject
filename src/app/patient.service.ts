@@ -32,6 +32,10 @@ private baseUrl3='http://localhost:8080/api/patient';
   deletelist(id:number):Observable<any>{
     return this.http.delete(`${this.baseUrl3}/${id}`,{responseType:'text'});
   }
+  patientlogin(patient:Patient){
+    return this.http.post("http://localhost:8080/api/patient/plogin",patient);
+
+  }
 
 
 

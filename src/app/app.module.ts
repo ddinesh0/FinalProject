@@ -27,6 +27,10 @@ import { DoctorspaceComponent } from './doctorspace/doctorspace.component';
 import { UserloginComponent } from './userlogin/userlogin.component';
 import { AppointmentlistComponent } from './appointment/appointmentlist/appointmentlist.component';
 import { DoctorpathComponent } from './doctordetails/doctorpath/doctorpath.component';
+import { PatientdashboardComponent } from './patient/patientdashboard/patientdashboard.component';
+import { SearchComponent } from './search/search.component';
+import { PatientlistComponent } from './doctor/patientlist/patientlist.component';
+import { DocpofileComponent } from './patient/patientdashboard/docpofile/docpofile.component';
 
 
 
@@ -52,6 +56,10 @@ import { DoctorpathComponent } from './doctordetails/doctorpath/doctorpath.compo
     UserloginComponent,
     AppointmentlistComponent,
     DoctorpathComponent,
+    PatientdashboardComponent,
+    SearchComponent,
+    PatientlistComponent,
+    DocpofileComponent,
 
 
 
@@ -62,6 +70,8 @@ import { DoctorpathComponent } from './doctordetails/doctorpath/doctorpath.compo
     HttpClientModule,
     FormsModule,
     RouterModule,
+
+
 
   ],
   providers: [],

@@ -4,18 +4,23 @@ import { Router } from '@angular/router';
 import { AdminService } from '../admin.service';
 import { Doctor } from '../doctor';
 import { DoctorService } from '../doctor.service';
+import { Patient } from '../patient';
+import { PatientService } from '../patient.service';
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit{
+
   admin:Admin=new Admin();
   doctor:Doctor=new Doctor();
+  patient:Patient=new Patient();
 
 
 
-  constructor(private router:Router,private adminService:AdminService, private doctorservice:DoctorService) {
+  constructor(private router:Router,private adminService:AdminService, private doctorservice:DoctorService,
+    private patientservice:PatientService) {
   }
 
 
@@ -39,6 +44,15 @@ public adminLogin(){
       this.router.navigate(['dashboard'])
     });
   }
+  patientlog() {
+ this.patientservice.patientlogin(this.patient).subscribe((data:any)=>{
+  console.log("patient login sucessfully"),
+  this.router.navigate(['patientdash'])
+ })
+    }
+
+
+
   public Signin( adminEmailId: String,adminPassword: String,email: String,password: String ){
 
     console.log(adminEmailId);
@@ -52,19 +66,19 @@ public adminLogin(){
       //   console.log("success");
 
 
-      if(email=="hendry@gmail.com" && password=="Hendryten12")
-      {
-        console.log("doctor log sucuessfully");
-        this.router.navigateByUrl('/dashboard');
+      // if(email=="" && password=="Hendryten12")
+      // {
+      //   console.log("doctor log sucuessfully");
+      //   this.router.navigateByUrl('/dashboard');
 
 
 
-      }
-      if(adminEmailId=="dinesh01@gmail.com"&& adminPassword=="Dinesh12"){
+      // }
+      // if(adminEmailId=="dinesh01@gmail.com"&& adminPassword=="Dinesh12"){
 
-        console.log("admin log sucuessfully");
-        this.router.navigateByUrl("/admin")
-      }
+      //   console.log("admin log sucuessfully");
+      //   this.router.navigateByUrl("/admin")
+      // }
 
 
 

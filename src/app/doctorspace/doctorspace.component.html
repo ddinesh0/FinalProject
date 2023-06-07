@@ -1,19 +1,13 @@
-<header>
-<app-doctordashboard></app-doctordashboard>
 
-<header class="modal-body">
-  <body>
-    <nav class="navbar navbar-expand-sm navbar-da" style="background-color:whitesmoke">
-    <div class="container-fluid">
+  <div class="overlay">
+  <div class="row"
+style="margin-top: 10%;margin-bottom: 10%;"
+*ngIf="shows">
+<div class="close" (click)="close()">
+  &times;
 
-      <h2>My profile</h2>
+</div>
 
-    </div>
-  </nav>
-
-
-
-  <div class="row">
           <div class="form-group col-3">
               <label> <font color="blue">ID</font></label><br/>
               <span class="text">{{doctor.id}}</span>
@@ -44,7 +38,6 @@
             <label><font color="blue">Qualification</font></label><br/>
             <span class="text">{{doctor.qualification}}</span>
         </div>
-
+      </div>
   </div>
-    </body>
-</header>
+

@@ -11,6 +11,7 @@ export class Patient {
   city: String;
   address: String;
   appointment:number;
+  role:String;
 
 
 

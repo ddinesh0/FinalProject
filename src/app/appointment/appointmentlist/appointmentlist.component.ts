@@ -5,7 +5,7 @@ import { AppointmentService } from '../../appointment.service';
 import { Patient } from '../../patient';
 import html2canvas from 'html2canvas';
 import jspdf from 'jspdf';
-
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-appointmentlist',
   templateUrl: './appointmentlist.component.html',
@@ -15,12 +15,15 @@ export class AppointmentlistComponent implements OnInit{
 
 
   patient:Patient=new Patient();
-
+appointment1:Appointment[];
 appointment:Appointment=new Appointment();
 Appointment: any;
 jspdf:any;
 then:any;
 canvas:any;
+fromdate: any;
+todate: any;
+myDate = new Date();
 
 constructor(public router:Router,public appointmentservice:AppointmentService){
 
@@ -59,6 +62,14 @@ console.log("downloding");
   });
 }
 }
+
+changes() {
+  if(this.fromdate!=null&&this.todate!=null)
+  this.appointment1=this.appointment1.filter(
+     m=> new Date(m.dates) >= new Date(this.fromdate )&& new Date(m.dates)<=new Date(this.todate)
+  );
+  console.log(this.appointment1)
+  }
 
 
 }

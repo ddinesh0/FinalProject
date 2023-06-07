@@ -1,3 +1,13 @@
-.form-group {
-  margin-left: 250px;
+
+
+.overlay{
+  background-color: rgba(212, 202, 159, 0.458);
+  width: 90%;
+  height: 70%;
+padding: -24px;
+}
+
+.close{
+  margin-left: 94%;
+  font-size: xx-large;
 }

@@ -10,6 +10,7 @@ export class Doctor {
   experience!:number;
   password!:string;
   email!:string;
+  designation!:string;
 
 
 

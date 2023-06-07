@@ -28,6 +28,21 @@
                                      </div>
                             </div>
                         </div>
+
+                        <div class="col-md-6 mb-4">
+                          <div class="form-outline">
+                            <label for="type">Designation</label>
+                            <select class="form-select" aria-label="Default select example"[(ngModel)]="admin.designation" #designation="ngModel" name="designation">
+
+                              <option value="admin">admin</option>
+
+
+                            </select>
+
+                                 </div>
+                                 </div>
+
+
                         <div class="col-md-6 mb-4">
                             <div class="form-outline">
                                 <input type="text" name="adminEmailId" class="form-control" placeholder="adminEmailId" [(ngModel)]="admin.adminEmailId" pattern="[A-Za-z0-9._%+-]{2,}@[a-zA-Z]{1,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" #adminEmailId="ngModel"

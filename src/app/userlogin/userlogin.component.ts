@@ -22,12 +22,15 @@ constructor(private router:Router,public patientservice:PatientService){
   ngOnInit(): void {
 
 
+
+
   }
 
 
   patientRegister() {
 
     this.patientservice.registerPatient(this.patient).subscribe((data:any)=>{
+
       console.log("Registered Successfully")
       if(confirm("Please wait admin will contact you" ))
       this.router.navigate(['welcomepage'])

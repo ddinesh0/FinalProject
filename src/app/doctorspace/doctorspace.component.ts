@@ -10,8 +10,9 @@ import { DoctorService } from '../doctor.service';
 })
 export class DoctorspaceComponent implements OnInit {
 
-id:number=4;
+id:number=8;
   doctor:Doctor=new Doctor();
+  shows=true;
 
   constructor(private router:Router,private route: ActivatedRoute, private doctorservice:DoctorService){
 
@@ -29,6 +30,9 @@ id:number=4;
   }
 Update() {
 
+}
+close(){
+  this.router.navigate(['/dashboard'])
 }
 
 

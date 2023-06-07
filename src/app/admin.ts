@@ -3,6 +3,7 @@ export class Admin {
     adminName: String;
     adminEmailId: String;
     adminPassword: String;
+    designation:String;
 
     //  constructor (  adminId: number,
     //     adminName: String,

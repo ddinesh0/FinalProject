@@ -8,6 +8,7 @@ export class Appointment {
   dates!:Date;
   disease!:string;
   patient!: Patient[];
+  filter: Appointment;
 }
 
 

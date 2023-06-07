@@ -5,3 +5,8 @@ table{
 .text-themecolor{
   margin-left: 250px;
 }
+
+.table td {
+  text-align: left; /* Adjust the alignment as needed */
+  vertical-align: middle; /* Adjust the vertical alignment as needed */
+}

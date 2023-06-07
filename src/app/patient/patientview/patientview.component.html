@@ -16,7 +16,10 @@
   </div>
 </div>
 
+<app-search (searchTextChanged)="OnsearchTextChanged($event)"></app-search>
+
 <div class="table-responsive">
+
   <table class="table color-bordered-table theme-bordered-table">
       <thead>
           <tr>
@@ -34,28 +37,34 @@
           </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let patient of Patient;">
-              <td>{{patient.id}}</td>
-              <td>{{patient.name}}</td>
-              <td>{{patient.dob}}</td>
-              <td>{{patient.gender}}</td>
-              <td>{{patient.contactno}}</td>
-              <td>{{patient.address}}</td>
-              <td>{{patient.state}}</td>
-              <td>{{patient.country}}</td>
-              <td>{{patient.city}}</td>
-              <td>{{patient.password}}</td>
-              <td>{{patient.email}}</td>
-              <td class="">
+        <!-- <div   class="row" *ngIf="searchText ===''||patient.name.toLowerCase().includes(searchText)"> -->
+          <tr *ngFor="let patient of Patient">
+
+              <td *ngIf="matchesSearchText(patient)">{{patient.id}}</td>
+              <td *ngIf="matchesSearchText(patient)">{{patient.name}}</td>
+              <td *ngIf="matchesSearchText(patient)">{{patient.dob}}</td>
+              <td *ngIf="matchesSearchText(patient)">{{patient.gender}}</td>
+              <td *ngIf="matchesSearchText(patient)">{{patient.contactno}}</td>
+              <td *ngIf="matchesSearchText(patient)">{{patient.address}}</td>
+              <td *ngIf="matchesSearchText(patient)">{{patient.state}}</td>
+              <td *ngIf="matchesSearchText(patient)">{{patient.country}}</td>
+              <td *ngIf="matchesSearchText(patient)">{{patient.city}}</td>
+              <td *ngIf="matchesSearchText(patient)">{{patient.password}}</td>
+              <td *ngIf="matchesSearchText(patient)">{{patient.email}}</td>
+              <td *ngIf="matchesSearchText(patient)" class="">
                 <button (click)="appointment(patient.id)" class="btn btn-secondary">Appointment</button>
 
                 <button (click)="updatelist(patient.id)"class="btn btn-primary">Update</button>
-                <button (click)="deleteRow(patient.id)"class="btn btn-dark">Delete</button>
+                <!-- <button (click)="deleteRow(patient.id)"class="btn btn-dark">Delete</button> -->
                   </td>
+
 
           </tr>
 
+
+
       </tbody>
+
   </table>
 </div>
 

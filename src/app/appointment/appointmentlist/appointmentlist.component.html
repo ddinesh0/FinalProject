@@ -7,8 +7,10 @@
   <div class="col-md-5 align-self-center">
       <h4 class="text-themecolor">Appointment List</h4>
   </div>
-  <div class="col-md-7 align-self-center text-right">
+  <div class="col-md-4 align-items-center text-right">
       <div class="d-flex justify-content-end align-items-center">
+        From:<input ngModel="from_date" type="date" class="form-control" [(ngModel)]="fromdate" (changes)="changes()">
+        To:<input ngModel="to_date" type="date" class="form-control" [(ngModel)]="todate"(changes)="changes()">
           <!-- <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="javascript:void(0)" (click)="back()">Home</a></li>
               <li class="breadcrumb-item active"> <a href="javascript:void(0)" (click)="create()">Create Profile</a></li>

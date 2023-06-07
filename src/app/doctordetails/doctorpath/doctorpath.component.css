@@ -1,3 +1,10 @@
 .table-responsive{
-  margin-left: 250px;
+  justify-content: center;
+}
+.table {
+  justify-content: center;
+}
+.close{
+  margin-left: 94%;
+  font-size: xx-large;
 }
