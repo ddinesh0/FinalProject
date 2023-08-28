@@ -1,7 +1,9 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavsideService } from '../navside.service';
-import { MenuService } from '../menu.service';
+import { NavserviceService } from '../navservice.service';
+import { MenuserviceService } from '../menuservice.service';
+import { PatientService } from '../patient.service';
 
 @Component({
   selector: 'app-admin',
@@ -9,28 +11,61 @@ import { MenuService } from '../menu.service';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit{
+toggleDropdown() {
+  this.isDropdownOpen = !this.isDropdownOpen;
+}
   collapses: boolean=true;
 sticky: any;
 position: any;
-isMenuOpen: boolean;
-
+isMenuOpen: boolean=false;
+checkSidebar:boolean=true;
 isScrolled=false;
 Patient: any;
+isDropdownOpen: boolean=false;
 
-  constructor(public router:Router,){
+  constructor(public router:Router, public navService:NavserviceService,public menuService:MenuserviceService ,
+    public patientservice:PatientService){
 
   }
   @ViewChild('blueheader') blueheader!: ElementRef<HTMLElement>;
 ngOnInit(): void {
   this.onWindowScroll();
 
+
 }
 
 collopse(){
   this.collapses=!this.collapses
   console.log(this.collapses);
-
 }
+  collapseSidebar() {
+    this.navService.collapseSidebar = !this.navService.collapseSidebar
+     if (!this.checkSidebar) {
+       this.menuService.toggleSidebar();
+     }
+     // if (!this.navService.collapseSidebar) {
+     //   window.location.reload(); // Refresh the current page
+     // }
+    // this.checkSidebar=true;
+   }
+   collapseSidebar1(){
+     this.navService.collapseSidebar = !this.navService.collapseSidebar
+     console.log(this.checkSidebar);
+     if (this.checkSidebar) {
+       this.menuService.toggleSidebar();
+     }
+     //this.checkSidebar=false;
+   }
+
+ //   toggletNavActive() {
+ //  this.checkSidebar=!this.checkSidebar
+ //     console.log(this.checkSidebar);
+ //   }
+
+  toggleMenu(){
+   this.isMenuOpen=!this.isMenuOpen;
+  }
+
 @HostListener('window:scroll')
 
 onWindowScroll() {

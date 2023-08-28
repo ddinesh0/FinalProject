@@ -1,42 +1,43 @@
 <html>
-<header>
-  <!-- Sidebar -->
-  <nav
-    id="sidebarMenu"
-    class="collapse d-lg-block sidebar collapse bg-dark"
 
-  >
-   <!-- *ngIf="collapses" -->
-    <div class="position-sticky">
-      <div class="list-group list-group-flush mx-3 mt-4">
-        <a class="list-group-item list-group-item-action py-2 ripple bg-dark">
-          <i class="fas fa-tachometer-alt fa-fw me-3"></i
-          ><span style="color: aliceblue">Main dashboard</span>
-        </a>
-      </div>
-    </div>
-  </nav>
-  <!-- Sidebar -->
 
+  <!-- Sidebar -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css">
+
+
+  <!-- Sidebar -->
+  <header>
   <!-- Navbar -->
   <nav
     id="main-navbar"
     class="navbar navbar-expand-lg navbar-light bg-dark fixed-top"
   >
+
     <!-- Container wrapper -->
     <div class="container-fluid">
+      <!-- <div class="page-main-header" [ngClass]="{'menu-open': isMenuOpen, 'menu-closed': !isMenuOpen}" id="page-main-header"> -->
       <!-- Toggle button -->
       <label>
         <a
           href="javascript:void(0);"
           class="icon"
-          style="color: rgb(255, 255, 255)"
-
+          style="color: rgb(255, 255, 255);    margin-left: 245px;"
+           *ngIf="!checkSidebar" (click)="collapseSidebar()" (click)="collopse()"
+        >
+        <!-- (click)="collopse()" -->
+          <i class="fa fa-bars"></i>
+        </a>
+        <a
+          href="javascript:void(0);"
+          class="icon1"
+          style="color: rgb(207, 91, 91);    margin-left: 245px;"
+           *ngIf="checkSidebar" (click)="collapseSidebar1()"(click)="collopse()"
         >
         <!-- (click)="collopse()" -->
           <i class="fa fa-bars"></i>
         </a>
       </label>
+
       <button
         class="navbar-toggler"
         type="button"
@@ -48,42 +49,51 @@
       >
         <i class="fas fa-bars"></i>
       </button>
+      <div id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-dark" *ngIf="collapses" >
+        <div class="position-sticky">
+          <div class="list-group list-group-flush mx-3 mt-4">
+            <a class="list-group-item list-group-item-action py-2 ripple bg-dark">
+              <i class="fas fa-tachometer-alt fa-fw me-3"></i
+              ><span style="color: aliceblue">Main dashboard</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
 
       <!-- Brand -->
-      <a class="navbar-brand" style="color: aliceblue">
-        <h3>Doctor</h3>
-      </a>
+      <div class="navbar-brand">
+
+        <h4 style="color: red; margin-left: 300%;">*logged in as</h4>
+      </div>
+      <div style="color: #ffffff;">
+        <h4>Doctor</h4>
+      </div>
 
       <!-- Right links -->
-      <ul class="navbar-nav ms-auto d-flex flex-row">
+      <!-- <ul class="navbar-nav ms-auto d-flex flex-row" [ngClass]="{'open' : openNav}"> -->
         <!-- Notification dropdown -->
         <div class="dropdown">
-          <button
-            class="btn btn-info dropdown-toggle"
-            type="button"
-            id="dropdownMenuButton1"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Option
+          <button class="dropdown-toggle" (click)="toggleDropdown()">
+            <img src="assets/image/re.png" alt="Logo" class="logo">
           </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li>
-              <a
-                class="dropdown-item"
-                routerLink="/signin"
-                routerLinkActive="active"
-                >Log Out</a
-              >
-            </li>
+          <ul class="dropdown-menu" [class.show]="isDropdownOpen">
+            <li><a  routerLink='/welcomepage'>LogOut</a></li>
           </ul>
         </div>
 
+
+
         <!-- Avatar -->
-      </ul>
+      <!-- </ul> -->
+
     </div>
+    <!-- </div> -->
+
     <!-- Container wrapper -->
   </nav>
+    <!-- </div>
+  </div> -->
   <!-- Navbar -->
 </header>
 <body>
@@ -126,8 +136,7 @@
 
  </div> -->
  <div [ngClass]="{'content-expand': isMenuOpen, 'content-wrapper': !isMenuOpen}" >
-  <a routerLink="/doctorspace/8"
-  routerLinkActive="active">
+
  <div class="bluebar_expand" style="width:100%"
 
  [ngClass]="{
@@ -142,13 +151,13 @@
 
 <div class="row" >
 
-  <div class="col-lg-8 text-white col-md-6 col-sm-6">
+  <div class="col-lg-8 text-white col-md-6 col-sm-6" data-bs-toggle="modal" data-bs-target="#myModal">
 
     <!-- <h5 class="small-text" style="padding-top: 20px;">You are currently logged in via {{this.roleName}} login</h5> -->
 
-    <h2 style="padding-top: 50px;">Welcome Harish</h2>
+    <h2 style="padding-top: 50px; margin-left: 1%;" >Welcome {{pat.firstName}}</h2>
 
-    <p>This is your Personal profile.<br>
+    <p style="margin-left: 1%;">This is your Personal profile.<br>
 
       A profile may better explain who you are and what you can offer others. In this article, we explain what a profile of a doctor is and what makes it effective, show how to create a profile of a doctor and provide a template and an example.</p>
 
@@ -156,15 +165,13 @@
 
   <div class="col-lg-4 col-md-6 col-sm-6" [ngClass]="{'menu-closed': !isMenuOpen}">
 
-
-
       <img src="assets/image/image12.jpg" alt="srp video" class="head-video-cover">
 
     </div>
 
 </div>
  </div>
-  </a>
+
   <br>
 
 
@@ -216,10 +223,10 @@
     <!-- </a> -->
   <!-- </div> -->
 
-  <div class="score_card">
+  <div class="score_card" (click)="patients()">
     <div class="row0">
-      <a routerLink="/patientlist" routerLinkActive="active">
-             <div class="card-body" style="background-color: rgb(253, 253, 253);  border-radius: 10px;">
+
+             <div class="card-body" style="  border-radius: 10px;">
       <h3 style="text-align: center;">Patient List</h3>
       <div >
 
@@ -231,16 +238,16 @@
         <!-- <p class="total_score" > {{ val.id}}</p> -->
       </div>
      </div>
-    </a>
+
 
     </div>
+
   </div>
 
-  <div class="score_card1">
+  <div class="score_card1" (click)="appoints()">
     <div class="row1">
-      <a routerLink="/doctorpath"
-      routerLinkActive="active">
-             <div class="card-body" style="background-color: rgb(253, 253, 253);  border-radius: 10px; ">
+
+             <div class="card-body" style=" border-radius: 10px; ">
       <h3 style="text-align: center;">Appointment List</h3>
       <div >
 
@@ -252,11 +259,57 @@
         <!-- <p class="total_score" > {{ val.id}}</p> -->
       </div>
      </div>
-    </a>
+
 
     </div>
   </div>
 
+  </div>
+</div>
+
+
+<div class="modal fade" id="myModal" tabindex="-10" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <!-- Form fields -->
+          <div class="mb-3">
+            <label for="name" class="form-label">DoctorID</label>
+            <span type="text" class="form-control" id="name" >{{pat.id}}</span>
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <span type="text" class="form-control" id="name" >{{pat.firstName}}</span>
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Email</label>
+            <span type="text" class="form-control" id="email" >{{pat.email}}</span>
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Contact NO</label>
+            <span type="text" class="form-control" id="contactno" >{{pat.contactno}}</span>
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Department</label>
+            <span type="text" class="form-control" id="gender" >{{pat.department}}</span>
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Password</label>
+            <span type="text" class="form-control" id="state" >{{pat.password}}</span>
+          </div>
+          <!-- Add more form fields as needed -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Submit</button> -->
+      </div>
+    </div>
   </div>
 </div>
 
@@ -342,6 +395,7 @@ display: flex;
 flex-wrap: wrap;
 
 justify-content: flex-start;
+
 
 }
 
@@ -430,9 +484,30 @@ font-weight: bold;
 
     margin: 15px;
 
+    margin-left: 30%;
+
     color: #000000;
 
+    cursor: pointer;
+
+
 }
+.score_card:hover{
+color: #ffffff;
+  background-color: #0051bf;
+}
+.row0:hover{
+  background-color: #0051bf;
+}
+
+.score_card1:hover{
+  color: #ffffff;
+background-color: #0051bf;
+}
+.row1:hover{
+background-color: #0051bf;
+}
+
 .score_card1 {
 
 display: block;
@@ -451,9 +526,11 @@ margin: 15px;
 
 color: #000000;
 
-margin-left: 95%;
+margin-left: 155%;
 
-margin-top: -41%;
+margin-top: -30%;
+
+cursor: pointer;
 
 }
 .score_card_inner:focus {
@@ -521,6 +598,27 @@ text-decoration: none;
   text-align: center;
   font-weight: bold;
 }
+
+/* .page-main-headerr.menu-open {
+
+margin-left: -15%;
+
+margin-top: 2%;
+
+margin-right: 2%;
+
+} */
+
+
+
+/* .page-main-header.menu-closed {
+
+margin-left: 2%;
+
+margin-top: 2%;
+
+} */
+
 
 
 

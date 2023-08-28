@@ -1,13 +1,44 @@
 
+<header>
+  <nav>
+    <div>
 
+     <strong style="font-size: xx-large; "><i class="fa-sharp fa-solid fa-arrow-left"(click)="handleClick()"></i></strong>
+
+      <h1 style="text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Doctor List</h1>
+    </div>
+</nav>
+
+  <ul class="navbar-nav ms-auto d-flex flex-row">
+    <!-- Notification dropdown -->
+    <!-- <div class="dropdown">
+      <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Share
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+
+        <li><button (click)="downloadPDF()" class="btn navbar-btn" ><i class="bi bi-file-pdf"> </i></button></li>
+        <li><button class="btn navbar-btn" shareButton="facebook"><i class="bi bi-messenger"></i></button></li>
+        <li><button class="btn navbar-btn" shareButton="whatsapp"><i class="bi bi-whatsapp"></i></button></li>
+
+      </ul>
+    </div> -->
+
+
+
+
+    <!-- Avatar -->
+
+  </ul>
+</header>
 
 <body>
   <div class="container">
-    <div class="profile" >
-      <div class="close" (click)="close()">
-        &times;
+    <ng-container *ngFor="let doctor of Doctor; let i=index">
+    <form class="form-control"id="content" >
 
-      </div>
+
       <img src="assets/image/user.png" style="width: 20%;" alt="srp video" class="photo">
       <h1>DR.{{doctor.firstName}}</h1>
       <span class="text">{{doctor.email}}</span><br>
@@ -17,13 +48,33 @@
             <span class="text">{{doctor.department}}</span><br>
             <label><font color="blue">Qualification:</font></label>
             <span class="text">{{doctor.qualification}}</span><br>
-            <label><font color="blue">Experience:</font></label>
-            <span class="text">{{doctor.experience}}</span><br><br><br>
-            <button (click)="downloadPDF()" class="btn btn-primary navbar-btn" ><i class="bi bi-file-pdf"> </i>Pdf</button>
+            <label><font color="blue">Year of Experience:</font></label>
+            <span class="text">{{doctor.experience}}</span><br>
+            <h2>Achivements</h2><br>
+            <p>Cardiologist, Internal Medicine
+
+              San Jose Hospital, CA
+
+              May 2011–September 2015
+              Achieved 22% reduction in surgeries by working with patients, admin, and nurse practitioners to suggest alternative treatments.
+              Increased referrals by 17% through networking with other physicians and medical staff in the area.
+              Helped raise reimbursements by $550,000 per year by collaborating with billing staff and insurance companies to explain treatments.</p>
+
+              <div class="connections">
+
+              <button (click)="downloadPDF()" id="connection{{i}}" class="btn btn-danger navbar-btn"  ><i class="bi bi-file-pdf"> </i></button>
 
 
-    </div>
+              <button id="connection{{i}}" class="btn btn-primary navbar-btn"  shareButton="facebook"><i class="bi bi-messenger"></i></button>
+              <button id="connection{{i}}" class="btn btn-primary navbar-btn green-btn" shareButton="whatsapp"><i class="bi bi-whatsapp"></i></button>
+            </div>
+
+
+    </form>
+  </ng-container>
+
   </div>
+
 </body>
 
 
