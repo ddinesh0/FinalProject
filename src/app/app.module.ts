@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 
 import { WelcomeComponent } from './welcome/welcome.component';
 import { SignupComponent } from './signup/signup.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AdminComponent } from './admin/admin.component';
@@ -31,8 +31,18 @@ import { PatientdashboardComponent } from './patient/patientdashboard/patientdas
 import { SearchComponent } from './search/search.component';
 import { PatientlistComponent } from './doctor/patientlist/patientlist.component';
 import { DocpofileComponent } from './patient/patientdashboard/docpofile/docpofile.component';
-
-
+import { ShareModule } from '@ngx-share/core';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule } from '@angular/common';
+import { LoaderComponent } from './loader/loader.component';
+import { MyappointmentComponent } from './patient/patientdashboard/myappointment/myappointment.component';
+import { AppointmentService } from './appointment.service';
+import { RegisterGuardService } from './Register-guard.service';
+import { AuthService } from './auth.service';
+import { CustomHttpInterceptor } from './http.interceptor';
 
 @NgModule({
   declarations: [
@@ -60,21 +70,26 @@ import { DocpofileComponent } from './patient/patientdashboard/docpofile/docpofi
     SearchComponent,
     PatientlistComponent,
     DocpofileComponent,
-
-
-
+    LoaderComponent,
+    MyappointmentComponent
   ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
     RouterModule,
-
+    ShareModule,
+    NgxPaginationModule,
+    NgbModule,
+    NgbPaginationModule,
+    CommonModule,
+    BsDatepickerModule.forRoot()
 
 
   ],
-  providers: [],
+  providers: [AppointmentService,RegisterGuardService,AuthService, {provide:HTTP_INTERCEPTORS, useClass:CustomHttpInterceptor, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

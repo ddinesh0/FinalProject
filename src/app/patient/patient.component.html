@@ -114,7 +114,7 @@
                                                           <!-- patient contactno-->
                                                  <div class="col-md-6 mb-4">
                                                   <div class="form-outline">
-                                                      <input type="text" name="contactno" class="form-control" placeholder="Contactno" [(ngModel)]="patient.contactno"  #contactno="ngModel"
+                                                      <input type="text" name="contactno" class="form-control" placeholder="Contactno" [(ngModel)]="patient.contactno" pattern="^[0-9]{10}$"  #contactno="ngModel"
                                                           [class.is-invalid]="contactno.invalid"/>
                                                  <!-- <small class="text-danger" [class.d-none]="firstname.valid||firstname.untouched">Required field</small> -->
                                                          <div *ngIf="contactno.errors ">
@@ -124,6 +124,20 @@
 
                                                          </div>
                                                          </div>
+                                                         <div class="col-md-6 mb-4">
+                                                          <div class="form-outline">
+
+                                                            <select class="form-select" aria-label="Default select example"[(ngModel)]="patient.role" >
+
+                                                              <option value="patient">Patient</option>
+
+
+                                                            </select>
+
+                                                                 </div>
+                                                                 </div>
+
+
 
                                                          <!-- patient emailId-->
                                                          <div class="form-outline mb-4">

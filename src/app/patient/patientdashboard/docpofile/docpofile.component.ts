@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DoctorService } from '../../../doctor.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Doctor } from 'src/app/doctor';
-import html2canvas from 'html2canvas';
-import jspdf from 'jspdf';
+import jspdf from "jspdf";
+import html2canvas from "html2canvas";
+// import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons/faFacebookSquare';
+// import { faTwitterSquare } from '@fortawesome/free-brands-svg-icons/faTwitterSquare';
+// import { faPinterest } from '@fortawesome/free-brands-svg-icons/faPinterest';
 
 @Component({
   selector: 'app-docpofile',
@@ -12,24 +15,27 @@ import jspdf from 'jspdf';
 })
 export class DocpofileComponent implements OnInit{
 
-  id:number=8;
+
+
+  id:number;
 shows=true;
 
 doctor:Doctor=new Doctor();
+Doctor: any;
+
+
 
 constructor(private doctorser:DoctorService,private router:Router,private route:ActivatedRoute){}
 
 ngOnInit(): void {
-  this.route.params.subscribe(params => {
-    console.log(params['id']);
 
-    this.doctorser.getdoctorById(params['id']).subscribe(data => {
-      this.doctor = data;
-    }, error => console.log(error));
+  this.doctorser.getview().subscribe((data:Doctor[])=>{
+    this.Doctor=data;
+    console.log(this.Doctor);
   });
 
 }
-close() {
+handleClick() {
   this.router.navigate(['/patientdash'])
 
 }
@@ -39,8 +45,8 @@ downloadPDF() {
     html2canvas(data).then(canvas => {
       console.log("downloading");
 
-      var imgWidth = 208;
-      var pageHeight = 295;
+      var imgWidth = 210;
+      var pageHeight = 260;
       var imgHeight = (canvas.height * imgWidth) / canvas.width;
       var heightLeft = imgHeight;
 
@@ -48,10 +54,12 @@ downloadPDF() {
       let pdf = new jspdf("p", "mm", "a4");
       var position = 0;
       pdf.addImage(contentDataURL, "PNG", 0, position, imgWidth, imgHeight);
-      pdf.save("MYPdf.pdf");
+      pdf.save("Doctorprofile.pdf");
     });
   }
 }
+
+
 
 }
 

@@ -1,3 +1,25 @@
 .table-responsive{
   margin-left: 250px;
 }
+.content-expand{
+
+  background-color: rgb(255, 255, 255);
+  height: 100%;
+  margin-left: -13%;
+}
+.content-wrapper{
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  height: 100%;
+
+}
+
+.menu-closed {
+
+  margin-left: 0px;
+
+  margin-left: 55px;
+  height: 146px;
+
+}

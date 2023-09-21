@@ -15,7 +15,7 @@
 
         <div class="col-lg-4">
 
-           <h2 style="text-align: center;"class="fw-bold mb-5"><b style="color:mediumblue">SignIn</b></h2>
+           <h2 style="text-align: center;"class="fw-bold mb-5"><b style="color:mediumblue">LogIn</b></h2>
                 <form class="shadow p-3 mb-5 bg-white rounded" #loginform="ngForm" (ngSubmit)="adminLogin()" (ngSubmit)="doctorLogin()" (ngSubmit)="patientlog()">
           <!-- {{registerform.form.valid}} -->
           <!-- 2 column grid layout with text inputs for the first and last names -->
@@ -48,8 +48,8 @@
         </div>
 
           <!-- Submit button -->
-          <button [disabled]="loginform.form.invalid" (click)="Signin(adminEmailId.value,adminPassword.value,password.value,email.value)"type="submit" class="btn btn-primary btn-block mb-4">
-           SignIn
+          <button [disabled]="loginform.form.invalid"type="submit" class="btn btn-primary btn-block mb-4">
+           LogIn
           </button>
           <div style="text-align: right;">
           <a routerLink="/signup"  routerLinkActive="active" class="nav-link" ><b style="color:mediumblue">Don't hava an account</b> <b style="color: red;">Signup now</b></a></div>

@@ -69,7 +69,8 @@
       <div style="color: #ffffff;">
         <h4>Doctor</h4>
       </div>
-
+      <div [ngClass]="{ 'dark-theme': themeService.isDarkMode }">
+      </div>
       <!-- Right links -->
       <!-- <ul class="navbar-nav ms-auto d-flex flex-row" [ngClass]="{'open' : openNav}"> -->
         <!-- Notification dropdown -->

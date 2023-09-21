@@ -7,14 +7,14 @@ import { Router } from '@angular/router';
 export class NavsideService {
 
   public screenWidth:any;
-  public collopse:boolean=false
+  public collopse:boolean=true;
   public fullscreen = false;
 
   constructor( private router:Router) {
 
     this.onResize();
     if(this.screenWidth<991){
-      this.collopse=false
+      this.collopse=true
     }
    }
 @HostListener('window:resize',['$event'])

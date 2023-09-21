@@ -1,8 +1,30 @@
 .container-fluid{
-  width: 1000px;
+  width: 1442px;
 
 }
 .row{
   margin-left: 230px;
 }
 
+.content-expand{
+
+  background-color: rgb(255, 255, 255);
+margin-left: -12%;
+  height: 100%;
+}
+.content-wrapper{
+  position: absolute;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  height: 100%;
+
+}
+
+.menu-closed {
+
+  margin-left: 0px;
+
+  margin-left: 55px;
+  height: 146px;
+
+}

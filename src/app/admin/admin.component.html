@@ -2,25 +2,33 @@
 <header>
   <!-- Sidebar -->
 
-  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white" *ngIf="collapses">
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-blue" *ngIf="collapses">
     <div class="position-sticky">
+<div class="photo">
+  <img src="assets/image/user.png"  alt="srp video" >
+</div>
+
+
       <div class="list-group list-group-flush mx-3 mt-4">
-        <a  class="list-group-item list-group-item-action py-2 ripple">
+
+
+
+        <a routerLink="/admin:id" routerLinkActive="active" class="list-group-item list-group-item-action py-2 ripple bg-blue">
           <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
         </a>
-        <a routerLink="/myspace/2" routerLinkActive="active" class="list-group-item list-group-item-action py-2 ripple ">
+        <a routerLink="'/myspace/'+id" routerLinkActive="active" class="list-group-item list-group-item-action py-2 ripple bg-blue ">
           <i class="fas fa-chart-area fa-fw me-3"></i><span>My Space</span>
         </a>
 
-        <a routerLink="/doctordetails" routerLinkActive="active" class="list-group-item list-group-item-action py-2 ripple"><i class="fa-solid fa-stethoscope"></i><span>Doctors List</span></a>
+        <a routerLink="/doctordetails" routerLinkActive="active" class="list-group-item list-group-item-action py-2 ripple bg-blue"><i class="fa-solid fa-stethoscope"></i><span>Doctors List</span></a>
             <i class="bx bxs-chevron-down arrow"></i>
 
 
-        <a routerLink="/patientview" routerLinkActive="active" class="list-group-item list-group-item-action py-2 ripple"><i class="fa-sharp fa-regular fa-hospital-user"></i>
+        <a routerLink="/patientview" routerLinkActive="active" class="list-group-item list-group-item-action py-2 ripple bg-blue"><i class="fa-sharp fa-regular fa-hospital-user"></i>
           <span>Patient List</span>
         </a>
 
-        <a  routerLink="/appointmentlist" routerLinkActive="active" class="list-group-item list-group-item-action py-2 ripple">
+        <a  routerLink="/appointmentlist" routerLinkActive="active" class="list-group-item list-group-item-action py-2 ripple bg-blue">
           <i class="fas fa-chart-pie fa-fw me-3"></i><span>Appointment</span>
         </a>
 
@@ -30,11 +38,30 @@
   <!-- Sidebar -->
 
   <!-- Navbar -->
-  <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow mb-5 bg-white rounded">
+  <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light  fixed-top shadow mb-5 bg-white rounded" style="    height: 9%;
+  margin-top: -1%;">
     <!-- Container wrapper -->
     <div class="container-fluid">
       <label >
-        <a href="javascript:void(0);"  class="icon" (click)="collopse()">
+        <!-- <a href="javascript:void(0);"  class="icon" (click)="collopse()">
+          <i class="fa fa-bars"></i>
+        </a> -->
+        <a
+          href="javascript:void(0);"
+          class="icon"
+          style="color: rgb(0, 0, 0);    margin-left: 245px;"
+           *ngIf="!checkSidebar" (click)="collapseSidebar()" (click)="collopse()"
+        >
+        <!-- (click)="collopse()" -->
+          <i class="fa fa-bars"></i>
+        </a>
+        <a
+          href="javascript:void(0);"
+          class="icon1"
+          style="color: rgb(0, 0, 0);    margin-left: 245px;"
+           *ngIf="checkSidebar" (click)="collapseSidebar1()" (click)="collopse()"
+        >
+        <!-- (click)="collopse()" -->
           <i class="fa fa-bars"></i>
         </a>
 
@@ -43,23 +70,27 @@
 
 
       <!-- Brand -->
-      <a class="navbar-brand" >
+      <div class="navbar-brand" >
 
-        <h1>Admin</h1>
-      </a>
+        <!-- <h3 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Admin</h3> -->
 
+<h4 style="color: red;">*log in as </h4>
+      </div>
+      <div>
+<h4 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Admin</h4>
+</div>
 
       <!-- Right links -->
       <!-- Right links -->
       <ul class="navbar-nav ms-auto d-flex flex-row">
+
         <!-- Notification dropdown -->
         <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            Profile
+          <button class="dropdown-toggle" (click)="toggleDropdown()">
+            <img src="assets/image/re.png" alt="Logo" class="logo">
           </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-
-            <li><a class="dropdown-item" routerLink='/signin' routerLinkActive="active">Log Out</a></li>
+          <ul class="dropdown-menu" [class.show]="isDropdownOpen">
+            <li><a  routerLink='/welcomepage'>LogOut</a></li>
           </ul>
         </div>
 

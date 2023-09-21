@@ -1,7 +1,7 @@
 <header>
   <app-admin></app-admin>
 </header>
-
+<div [ngClass]="{'content-expand': isMenuOpen, 'content-wrapper': !isMenuOpen}" >
 <nav class="shadow-lg p-2 mb-3 bg-white rounded">
 <div class="row page-titles">
   <div class="col-md-5 align-self-center">
@@ -9,8 +9,8 @@
   </div>
   <div class="col-md-4 align-items-center text-right">
       <div class="d-flex justify-content-end align-items-center">
-        From:<input ngModel="from_date" type="date" class="form-control" [(ngModel)]="fromdate" (changes)="changes()">
-        To:<input ngModel="to_date" type="date" class="form-control" [(ngModel)]="todate"(changes)="changes()">
+        From:<input ngModel="from_date" type="date" class="form-control" [(ngModel)]="fromdate" (change)="changes()">
+        To:<input ngModel="to_date" type="date" class="form-control" [(ngModel)]="todate"(change)="changes()">
           <!-- <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="javascript:void(0)" (click)="back()">Home</a></li>
               <li class="breadcrumb-item active"> <a href="javascript:void(0)" (click)="create()">Create Profile</a></li>
@@ -22,7 +22,7 @@
 
 
 <div class="table-responsive">
-  <table class="table color-bordered-table theme-bordered-table">
+  <table class="table color-bordered-table theme-bordered-table"id="content">
       <thead>
           <tr>
               <th>Appointment Id</th>
@@ -35,12 +35,12 @@
           </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let appointment of Appointment;">
+          <tr *ngFor="let appointment of Appointment  | paginate: { itemsPerPage: 5, currentPage: currentPage}">
               <td>{{appointment.id}}</td>
               <td>{{appointment.age}}</td>
               <td>{{appointment.dates}}</td>
               <td>{{appointment.disease}}</td>
-              <td>{{appointment.id}}</td>
+              <td>{{appointment.patient.id}}</td>
 
               <td >
 
@@ -51,6 +51,9 @@
 
       </tbody>
   </table>
+  <div class="container">
+    <pagination-controls  (pageChange)="currentPage = $event"></pagination-controls>
+  </div>
   <div  class="row-lg-3" style="margin-left: 20px; ">
     <button (click)="downloadPDF()" class="btn btn-primary">Download PDF</button>
   </div>
@@ -63,6 +66,7 @@
 <span id="copyright"style="text-align:center"><b style="color: black;">&reg;All rights reserved</b></span>
 </div>
 </footer>
+</div>
 
 
 

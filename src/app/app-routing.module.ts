@@ -21,6 +21,9 @@ import { DoctorpathComponent } from './doctordetails/doctorpath/doctorpath.compo
 import { PatientdashboardComponent } from './patient/patientdashboard/patientdashboard.component';
 import { PatientlistComponent } from './doctor/patientlist/patientlist.component';
 import { DocpofileComponent } from './patient/patientdashboard/docpofile/docpofile.component';
+import { MyappointmentComponent } from './patient/patientdashboard/myappointment/myappointment.component';
+import { AppointmentService } from './appointment.service';
+import { RegisterGuardService } from './Register-guard.service';
 
 const routes: Routes = [
 {path: 'welcomepage', component:WelcomeComponent},
@@ -34,17 +37,18 @@ const routes: Routes = [
 {path: 'doctorupdate/edit/:id',component:DoctorupdateComponent},
 {path: 'admin/adminupdate',component:AdminupdateComponent},
 {path:'dashboard',component:DoctordashboardComponent},
-{path:'appointment',component:AppointmentComponent},
+{path:'appointment',component:AppointmentComponent,canActivate:[RegisterGuardService]},
 {path:'patientview',component:PatientviewComponent},
 {path:'patientupdate/:id',component:PatientupdateComponent},
 {path:'doctorspace/:id',component:DoctorspaceComponent},
-{path:'userlogin',component:UserloginComponent},
-{path:'appointment/:id',component:AppointmentComponent},
+{path:'userlogin',component:UserloginComponent,canActivate:[RegisterGuardService]},
+{path:'appointment/:id',component:AppointmentComponent,canActivate:[AppointmentService]},
 {path:'appointmentlist',component:AppointmentlistComponent},
 {path:'doctorpath',component:DoctorpathComponent},
 {path:'patientdash',component:PatientdashboardComponent},
 {path:'patientlist',component:PatientlistComponent},
-{path:'docprofile/:id',component:DocpofileComponent}
+{path:'docprofile',component:DocpofileComponent},
+{path:'myappoint',component:MyappointmentComponent}
 
 ]
 @NgModule({

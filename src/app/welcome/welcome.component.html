@@ -1,8 +1,8 @@
-
+<router-outlet></router-outlet>
 <style>
     body {
     margin: 0;
-    padding-top: 60px; /* Adjust this value to match the height of your fixed header */
+    padding-top: 50%; /* Adjust this value to match the height of your fixed header */
   }
 </style>
 <!-- <div style="background-image: url('https://cdn.pixabay.com/photo/2015/01/31/05/05/background-618226__340.png');background-repeat: no-repeat;background-attachment: fixed; background-size: cover;"> -->
@@ -28,175 +28,215 @@
             <!-- </ul>
         </nav>
       </header> -->
-<header style="position: fixed;width: 100%;padding-top:0%;z-index: 999;">
-  <nav class="navbar navbar-expand-sm navbar-da" style="background-color:white; width: 100%;">
+<header style="position: absolute;width: 100%;padding-top:0%;z-index: 999;">
+  <nav class="navbar navbar-expand-sm navbar-da" style="background-color:rgba(255, 255, 255, 0); width: 100%;">
     <div class="container-fluid">
-
-      <h2 ><i class="fa-solid fa-hospital"></i> A.K Hospital</h2>
+      <img src=".\assets\image\icon.png" style="overflow: hidden; transition: transform 0.3s ease;">
+      <h2 >
+<i class="icon"></i> A.K Hospital</h2>
 
        <ul class = "nav navbar-nav">
-        <button (click)="appointment()"class="btn btn-secondary navbar-btn"><i class="fa-regular fa-house-medical-circle-check"></i>Appointment</button><br>
+        <!-- <button (click)="appointment()"class="btn btn-secondary navbar-btn"><i class="bi bi-prescription2"></i>Appointment</button><br> -->
 
-        <button (click)="SignIn()"class="btn btn-primary navbar-btn"><i class="fa-solid fa-user"></i>SignIn</button>
+        <!-- <button class="btn btn-primary navbar-btn"  data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa-solid fa-user"></i>SignIn</button> -->
 
-        </ul>
+      </ul>
+
+    </div>
+  </nav>
+</header>
+<header style="position: absolute;width: 100%;padding-top:3%;z-index: 999;">
+  <nav class="navbar navbar-expand-sm navbar-da" style="background-color:rgba(39, 46, 148, 0); width: 100%;">
+    <div class="container-fluid">
+
+
+
+       <ul class = "nav navbar-nav">
+        <!-- <button (click)="appointment()"class="btn btn-secondary navbar-btn"><i class="bi bi-prescription2"></i>Appointment</button><br> -->
+
+        <!-- <button class="btn btn-primary navbar-btn"  data-bs-toggle="modal" data-bs-target="#myModal"><i class="fa-solid fa-user"></i>SignIn</button> -->
+<li routerLink="/appointment"><a> Appointment</a></li>
+<li class="dropdown">
+  <a class="dropdown-toggle" data-toggle="dropdown" >Health information</a>
+  <div class="dropdown-menu">
+    <ul>
+      <li><a href="#">Cardiology</a></li>
+      <li><a href="#">Orthodontist</a></li>
+      <li><a href="#">Neurology</a></li>
+      <li><a href="#">Urology</a></li>
+    </ul>
+  </div>
+</li>
+<li><a> contact us</a></li>
+
+<button class="btn" style="margin-left: 59%;
+margin-top: 0%;" (click)="appointment()">Register</button>
+</ul>
 
     </div>
   </nav>
 </header>
 
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel">Log In</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Form goes here -->
+
+
+          <form  #loginform="ngForm" (ngSubmit)="adminLogin()" (ngSubmit)="doctorLogin()" (ngSubmit)="patientlog()">
+            <!-- {{registerform.form.valid}} -->
+            <!-- 2 column grid layout with text inputs for the first and last names -->
+
+
+
+                          <div class="form-outline mb-3">
+                              <div class="form-outline">
+                                  <input type="text" name="adminEmailId" class="form-control" placeholder="EmailId"  name="admin.adminEmailId" [(ngModel)]="admin.adminEmailId" [(ngModel)]="doctor.email" [(ngModel)]="patient.email" pattern="[A-Za-z0-9._%+-]{2,}@[a-zA-Z]{1,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" #adminEmailId="ngModel"
+                                     #email="ngModel" [class.is-invalid]="adminEmailId.invalid"/>
+                             <!-- <small class="text-danger" [class.d-none]="firstname.valid||firstname.untouched">Required field</small> -->
+                                     <div *ngIf="adminEmailId.errors ">
+                                          <small class="text-danger" *ngIf="adminEmailId.errors?.['required']">required field</small>
+                                           <small class="text-danger"*ngIf="adminEmailId.errors?.['pattern']">enter a valid email</small>
+                                     </div>
+
+                                     </div>
+                                     </div>
+                                    <!-- Password input -->
+          <div class="form-outline mb-3">
+            <input type="password" name="adminPassword" class="form-control" placeholder="Password" [(ngModel)]="admin.adminPassword" [(ngModel)]="doctor.password" [(ngModel)]="patient.password" required  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+             title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+            #adminPassword="ngModel" #password="ngModel"         [class.is-invalid]="adminPassword.invalid && adminPassword.touched"/>
+
+            <!-- <small class="text-danger" [class.d-none]="password.valid||password.untouched">Required field</small> -->
+            <div *ngIf="adminPassword.errors && (adminPassword.invalid && adminPassword.touched)">
+              <small class="text-danger" *ngIf="adminPassword.errors?.['required']">password is required</small>
+              <small class="text-danger"*ngIf="adminPassword.errors?.['pattern']">must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters</small>
+            </div>
+          </div>
+
+            <!-- Submit button -->
+            <button [disabled]="loginform.form.invalid"type="submit" class="btn btn-primary btn-block mb-4">
+             LogIn
+            </button>
+            <div style="text-align: right;">
+            <a routerLink="/signup"  routerLinkActive="active" class="nav-link" ><b style="color:mediumblue">Don't hava an account</b> <b style="color: red;">Signup now</b></a></div>
+
+          </form>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
 <body>
 
-<div>
-
-          <section>
-            <div class="col-lg-12">
-            <div class="row-md-5">
-            <h2 class="text-center">Emergency</h2>
-            <p class="text-center">Dail:- 044-1234 1234</p>
-            <section class="row d-flex justify-content-end">
-              <div class="row-lg-4">
-
-                      <div class="shadow p-2 mb-2 bg-white rounded" style="float: right;" (ngSubmit)="appointment()">
-                        <h2 style="text-align: right; font-family: 'Courier New', Courier, monospace;" class="fw-bold mb-5"><b style="color:mediumblue">Make a appointment</b></h2>
-                <!-- {{registerform.form.valid}} -->
-                <!-- 2 column grid layout with text inputs for the first and last names -->
+  <div class="parent-container">
+    <div class="element-to-appear-above-slides">
+      <div class="content">
 
 
-                          <div class="col-md-5 mb-2" style="height: auto;">
-                            <div class="form-outline">
-                              <label>Age</label>
-                                <input type="number" name="age" class="form-control" placeholder="age" [(ngModel)]="appointment1.age"  #age="ngModel"
-                                    [class.is-invalid]="age.invalid"/>
-                            </div>
-                          </div>
-                          <div class="col-md-5 mb-2">
-                            <div class="form-outline">
-                              <label>DOA</label>
-                                <input type="date" name="date" class="form-control" placeholder="date" [(ngModel)]="appointment1.dates"  #dates="ngModel"
-                                    [class.is-invalid]="dates.invalid"/>
-                            </div>
-                          </div>
-                          <div class="col-md-5 mb-2">
-                            <div class="form-outline">
-                              <label>Reason</label>
-                                <input type="text" name="disease" class="form-control" placeholder="reason" [(ngModel)]="appointment1.disease"  #disease="ngModel"
-                                    [class.is-invalid]="disease.invalid"/>
-                            </div>
-                          </div>
-                          <div>
+        <form  #loginform="ngForm" (ngSubmit)="adminLogin()" (ngSubmit)="doctorLogin()" (ngSubmit)="patientlog()">
+          <div class="row">
+            <div class="form-group" style="float: left; width: 50%">
+              <input
+                style="color: #f0f1f5"
+                class="form-control"
+                placeholder="Username"
 
-                            <button (click)="appointment()"class="btn btn-primary navbar-btn">Appointment</button>
-                      </div>
-                          </div>
-                          </div>
-                        </section>
-          </div>
-            </div></section>
+                name="admin.adminEmailId"
+                [(ngModel)]="admin.adminEmailId" [(ngModel)]="doctor.email" [(ngModel)]="patient.email" pattern="[A-Za-z0-9._%+-]{2,}@[a-zA-Z]{1,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})" #adminEmailId="ngModel"
+                type="email"
+                required
+              />
+            </div>
 
-<section>
-          <div class="col-lg-12" >
-            <div class="row-lg-3">
-                  <img style="width: 400px;" src=".\assets\image\image4.png">
-                    <h2>Cardiology</h2>
-
-              <div class="row-lg-9">
-                           <h4 >The A.K Heart Institutes are regarded as one of the best heart hospitals in India, performing a multitude of treatments and procedures in cardiology and cardiothoracic surgery. The scorecard shows an unmatched record of over 1,52,000 cardiac and cardiothoracic surgeries.
-
-              We have vast experience in the most complicated coronary artery bypass surgery, surgery for all types of valvular heart diseases, paediatric heart surgery, adult and paediatric heart transplantation with success rates comparable to international standards.</h4>
-              </div>
+            <div class="form-group" style="width: 50%">
+              <input
+                class="form-control"
+                placeholder="Password"
+                type="password"
+                name="adminPassword"
+                 [(ngModel)]="admin.adminPassword" [(ngModel)]="doctor.password" [(ngModel)]="patient.password" required  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                title="Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+               #adminPassword="ngModel" #password="ngModel"         [class.is-invalid]="adminPassword.invalid && adminPassword.touched"
+                required
+                style="color: #f0f1f5"
+                style="margin-left: 126px"
+              />
             </div>
           </div>
-</section>
 
-
-
-        <section>
-          <div class="col-lg-12">
-            <div class="row-lg-3">
-            <img src=".\assets\image\image5.png">
-            <h2>Orthopaedics</h2>
-
-
-              <div class="row-lg-9">
-            <h4 >The A.K Institutes of Orthopaedics is regarded as one of the best & top orthopaedics hospitals in India with a legacy of innovation and excellence. The Institutes are at the forefront in offering the latest in Orthopedic treatments and Orthopedic surgical advancements in India on par with the best centres in the world.
-
-              A.K Hospitals offers key & best orthopedic surgeries and procedures in India. We perform bone and joint replacement surgeries which include the most current Arthroscopic and Reconstructive techniques.</h4>
-            </div>
+          <div class="form-group">
+            <button
+              class="btn btn-primary btn-block mb-6"
+              [disabled]="loginform.form.invalid"
+              type="submit" onclick="startSchedule()"
+            >
+              <span>Login</span>
+            </button>
           </div>
-            </div>
-
-        </section>
 
 
+          <!-- <div class="form-group1">
+            <button class="btn"  (click)="SignUp()">Sign up</button>
+          </div> -->
 
-        <section>
-          <div class="col-lg-12">
-            <div class="row-lg-3">
-              <img src=".\assets\image\image6.png">
-            <h2>Nephrology</h2>
+        </form>
 
-              <div class="row-lg-9">
-            <h4 >Nephrology is a branch of medical science that deals with the diagnosis and treatment of disorders related to the kidney. Nephrology is a centre of excellence at Apollo and sees more than 10,000 patients every year. Apollo houses some of the very best specialists in the world who specialize in management of kidney failure, dialysis, electrolyte disturbance, diabetic nephropathy, hypertension to kidney transplant. The transplant program is very active. Apollo Hospitals is your one-stop destination to book the best Nephrologists in your town.</h4>
-            </div>
-          </div>
-            </div>
-          </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
 
 
-
-          <section>
-            <div class="col-lg-12 ">
-              <div class="row-lg-3">
-              <h2>Neurology</h2>
-              <img src=".\assets\image\image7.png">
-                <div class="row-lg-9">
-              <h4 >Neurology is a centre of excellence at A.K Hospitals and deals with diagnosis and treatment of disorders of the nervous system. The Apollo Hospital Neuro departments are equipped with the best team and state of the art facilities like Neuro radiology, sleep lab, Intensive care units etc. Our Neuro team takes care of more than 300 variety of problems like aneurisms, dementia, Alzheimer’s, epilepsy, cerebro vascular diseases, headache, multiple sclerosis, stroke, Neuro oncology, neurophysiology, sleep neurology. The Apollo stroke program is a protocol based approach and is benchmarked with the best institutions in the world. Taking the best of care for your nervous system is an aspect whose importance cannot be underlined enough, so leave it to the Apollo eDoc.in portal to find the best neurologists for any challenge that befalls your nerves!</h4>
-              </div>
-            </div>
-              </div>
-          </section>
-
-          <section>
-            <div class="col-lg-12">
-              <div class="row-lg-3">
-                <img src=".\assets\image\image8.png">
-              <h2>Urology</h2>
-
-                <div class="row-lg-9">
-              <h4 >Urology deals with diagnosis and treatment of diseases predominantly of male reproductive organs and the urinary tract of males and females. A.K Hospitals have state-of-the-art Urology facilities including minimally invasive surgeries, robotics and laparoscopy techniques, fiber-optic endoscopy, and lithotripsy units. An urologist deals with diseases such as Incontinence, prostate enlargement, kidney stones, prostate cancer, penile fractures, urinary infections, and STDs, just to name a few. The department works closely with uro-oncology, uro gynecology, nephrology, colorectal surgery, andrology to offer a more systematic and collaborative approach to treatment. So don’t hesitate and walk right into Apollo Hospitals’ to let our urologists fix you up just fine. Apollo Hospitals offers you the best way of being discreet, no longer will getting an appointment become an awkward experience!</h4>
-              </div>
-            </div>
-              </div>
-          </section>
+        <div class="row-box">
+          <p>CARDIO</p>
+        </div>
 
 
- <!-- <script type="text/javascript">
-            window.addEventListener('scroll',reveal);
-            reveal
-            function reveal(){
-              var reveals=document.querySelectorAll('.reveal');
+        <div class="row-box">
+          <p>NEURO</p>
+        </div>
 
-              for(var i=0;i<reveals.length;i++)
-              {
-                var windowheight = window.innerHeight;
-                var revealtop = reveals[i].getBoundingClientRect().top;
-                var revealpoint = 150;
 
-                if(revealtop < windowheight - revealpoint)
-                {
-                  reveals[i].classList.add('active');
-                }
-                else{
-                  reveals[i].classList.remove('active');
-                }
-              }
-            }
+        <div class="row-box">
+          <p>ORTHO</p>
+        </div>
 
-          </script> -->
 
-        <!-- <img style=" margin-top: -1820px;opacity: 0.3;" src=".\assets\image\image1.png">
-        <img style=" margin-top: -550px;opacity: 0.3;" src=".\assets\image\image3.png"> -->
+        <div class="row-box">
+          <p>NEPHRO</p>
+        </div>
 
-</div>
+        <div class="row-box">
+          <p>UROLOGY</p>
+        </div>
+
+
+    </div>
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  function startSchedule() {
+      $.post('/schedule/start', function (response) {
+          console.log(response);
+      });
+  }
+</script>
+
 </body>
+<footer>
+  <p class="s">2023 &#169; AK Research & Institute</p>
+</footer>
+

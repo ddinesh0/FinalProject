@@ -3,6 +3,8 @@ import { Patient } from '../patient';
 import { PatientService } from '../patient.service';
 import { Router } from '@angular/router';
 
+
+
 @Component({
   selector: 'app-patient',
   templateUrl: './patient.component.html',

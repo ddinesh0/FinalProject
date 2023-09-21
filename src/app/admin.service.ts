@@ -46,5 +46,16 @@ export class AdminService {
   //   return this.http.get<Bill[]>(`${this.baseUrl}`);
   // }
 
+  setprofile(admin:any){
+    localStorage.setItem("admin",admin);
 
+  }
+  getprofile():any{
+const role=localStorage.getItem("admin");
+return role;
+  }
+  logout(): void {
+    // Clear localStorage
+    localStorage.clear();
+}
 }

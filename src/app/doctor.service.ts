@@ -39,4 +39,17 @@ export class DoctorService {
   {
    return this.http.delete(`${this.baseUrl1}/${id}`,{responseType:'text'});
   }
+
+  setprofile(doctor:any){
+    localStorage.setItem("doctor",doctor);
+
+  }
+  getprofile():any{
+const role=localStorage.getItem("doctor");
+return role;
+  }
+  logout(): void {
+    // Clear localStorage
+    localStorage.clear();
+}
 }

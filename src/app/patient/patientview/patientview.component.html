@@ -1,71 +1,94 @@
 <header>
   <app-admin></app-admin>
 </header>
-
-<div class="row page-titles">
-  <div class="col-md-5 align-self-center">
-      <h4 class="text-themecolor">Patient List</h4>
+<div [ngClass]="{'content-expand': isMenuOpen, 'content-wrapper': !isMenuOpen}" >
+<body style="background-color: rgb(255, 255, 255);">
+  <div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h4 class="text-themecolor">Patient List</h4>
+    </div>
+    <div class="col-md-7 align-self-center text-right">
+        <div class="d-flex justify-content-end align-items-center">
+            <ol class="breadcrumb">
+                <!-- <li class="breadcrumb-item"><a href="javascript:void(0)" (click)="back()">Home</a></li> -->
+              <button type="button" class="btn btn-warning" style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;"><li  (click)="create()"><i class="bi bi-plus-lg"></i>Create Profile</li></button>
+            </ol>
+        </div>
+    </div>
   </div>
-  <div class="col-md-7 align-self-center text-right">
-      <div class="d-flex justify-content-end align-items-center">
-          <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="javascript:void(0)" (click)="back()">Home</a></li>
-              <li class="breadcrumb-item active"> <a href="javascript:void(0)" (click)="create()">Create Profile</a></li>
-          </ol>
-      </div>
+
+  <!-- <app-search (searchTextChanged)="OnsearchTextChanged($event)"></app-search> -->
+
+  <div class="table-responsive">
+    <div class="selector" style="margin-left: 60%;">
+      <select type="number" [(ngModel)]="pageSize" (change)="getpage(pageSize)" >
+        <option *ngFor="let data of pageSizes">
+          {{data}}
+        </option>
+      </select>
+    </div>
+    <style>
+      .table {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+      }
+    </style>
+
+
+    <table class="table color-bordered-table theme-bordered-table">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Id</th>
+                <th>Name</th>
+                <th>DOB</th>
+                <th>Gender</th>
+                <th>ContactNo</th>
+                <th>Address</th>
+                <th>State</th>
+                <th>Country</th>
+                <th>City</th>
+                <th>Password</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+          <!-- <div   class="row" *ngIf="searchText ===''||patient.name.toLowerCase().includes(searchText)"> -->
+
+            <tr  *ngFor="let patient of Patient | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize;let i=index">
+              <td>{{ i + 1}}</td>
+
+                <td *ngIf="matchesSearchText(patient)">{{patient.id}}</td>
+                <td *ngIf="matchesSearchText(patient)">{{patient.name}}</td>
+                <td *ngIf="matchesSearchText(patient)">{{patient.dob}}</td>
+                <td *ngIf="matchesSearchText(patient)">{{patient.gender}}</td>
+                <td *ngIf="matchesSearchText(patient)">{{patient.contactno}}</td>
+                <td *ngIf="matchesSearchText(patient)">{{patient.address}}</td>
+                <td *ngIf="matchesSearchText(patient)">{{patient.state}}</td>
+                <td *ngIf="matchesSearchText(patient)">{{patient.country}}</td>
+                <td *ngIf="matchesSearchText(patient)">{{patient.city}}</td>
+                <td *ngIf="matchesSearchText(patient)">{{patient.password}}</td>
+                <td *ngIf="matchesSearchText(patient)">{{patient.email}}</td>
+                <td *ngIf="matchesSearchText(patient)" class="">
+                  <button (click)="appointment(patient.id)" class="btn btn-secondary">Appointment</button>
+
+                  <button (click)="updatelist(patient.id)"class="btn btn-primary">Update</button>
+                  <!-- <button (click)="deleteRow(patient.id)"class="btn btn-dark">Delete</button> -->
+                    </td>
+
+
+            </tr>
+
+        </tbody>
+
+    </table>
+    <div class="container-fluid">
+      <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="collectionSize">
+
+      </ngb-pagination>
+    </div>
+
   </div>
-</div>
-
-<app-search (searchTextChanged)="OnsearchTextChanged($event)"></app-search>
-
-<div class="table-responsive">
-
-  <table class="table color-bordered-table theme-bordered-table">
-      <thead>
-          <tr>
-              <th>Id</th>
-              <th> Name</th>
-              <th>DOB</th>
-              <th>Gender</th>
-              <th>ContactNo</th>
-              <th>Address</th>
-              <th>State</th>
-              <th>Country</th>
-              <th>City</th>
-              <th>Password</th>
-              <th>Email</th>
-          </tr>
-      </thead>
-      <tbody>
-        <!-- <div   class="row" *ngIf="searchText ===''||patient.name.toLowerCase().includes(searchText)"> -->
-          <tr *ngFor="let patient of Patient">
-
-              <td *ngIf="matchesSearchText(patient)">{{patient.id}}</td>
-              <td *ngIf="matchesSearchText(patient)">{{patient.name}}</td>
-              <td *ngIf="matchesSearchText(patient)">{{patient.dob}}</td>
-              <td *ngIf="matchesSearchText(patient)">{{patient.gender}}</td>
-              <td *ngIf="matchesSearchText(patient)">{{patient.contactno}}</td>
-              <td *ngIf="matchesSearchText(patient)">{{patient.address}}</td>
-              <td *ngIf="matchesSearchText(patient)">{{patient.state}}</td>
-              <td *ngIf="matchesSearchText(patient)">{{patient.country}}</td>
-              <td *ngIf="matchesSearchText(patient)">{{patient.city}}</td>
-              <td *ngIf="matchesSearchText(patient)">{{patient.password}}</td>
-              <td *ngIf="matchesSearchText(patient)">{{patient.email}}</td>
-              <td *ngIf="matchesSearchText(patient)" class="">
-                <button (click)="appointment(patient.id)" class="btn btn-secondary">Appointment</button>
-
-                <button (click)="updatelist(patient.id)"class="btn btn-primary">Update</button>
-                <!-- <button (click)="deleteRow(patient.id)"class="btn btn-dark">Delete</button> -->
-                  </td>
-
-
-          </tr>
-
-
-
-      </tbody>
-
-  </table>
+</body>
 </div>
 
 

@@ -2,16 +2,20 @@
 <header>
   <!-- Sidebar -->
 
-  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white" *ngIf="collapses">
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white" style="color: rgb(255, 140, 0);" *ngIf="collapses">
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
-        <a  class="list-group-item list-group-item-action py-2 ripple">
+        <!-- <a  class="list-group-item list-group-item-action py-2 ripple">
           <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
-        </a>
+        </a> -->
         <a routerLink="" routerLinkActive="active" class="list-group-item list-group-item-action py-2 ripple ">
           <i class="fas fa-chart-area fa-fw me-3"></i><span>My Space</span>
         </a>
-
+        <a class="list-group-item list-group-item-action py-2 ripple" data-bs-toggle="modal" data-bs-target="#mymodal">
+          <i class="fas fa-chart-area fa-fw me-3">
+              Appointment
+          </i>
+      </a>
         <!-- <a routerLink="/doctordetails" routerLinkActive="active" class="list-group-item list-group-item-action py-2 ripple"><i class="fa-solid fa-stethoscope"></i><span>Doctors List</span></a>
             <i class="bx bxs-chevron-down arrow"></i>
 
@@ -34,9 +38,25 @@
     <!-- Container wrapper -->
     <div class="container-fluid">
       <label >
-        <a href="javascript:void(0);"  class="icon" (click)="collapse()">
+        <a
+          href="javascript:void(0);"
+          class="icon"
+          style="color: rgb(0, 0, 0);    margin-left: 245px;"
+           *ngIf="!checkSidebar" (click)="collapseSidebar()" (click)="collopse()"
+        >
+        <!-- (click)="collopse()" -->
           <i class="fa fa-bars"></i>
         </a>
+        <a
+          href="javascript:void(0);"
+          class="icon1"
+          style="color: rgb(0, 0, 0);    margin-left: 245px;"
+           *ngIf="checkSidebar" (click)="collapseSidebar1()" (click)="collopse()"
+        >
+        <!-- (click)="collopse()" -->
+          <i class="fa fa-bars"></i>
+        </a>
+
 
       </label>
       <button
@@ -51,31 +71,41 @@
       <i class="fas fa-bars"></i>
     </button>
 
+    <h3 style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">AK Hospital</h3>
+
 
               <!-- Toggle button -->
 
 
       <!-- Brand -->
-      <a class="navbar-brand" >
+      <div class="navbar-brand" >
 
-        <h1>Patient</h1>
-      </a>
+        <h4 style="color: red;">*logged in as</h4>
+      </div>
+      <div>
+        <h4>Patient</h4>
+      </div>
 
 
       <!-- Right links -->
       <!-- Right links -->
       <ul class="navbar-nav ms-auto d-flex flex-row">
         <!-- Notification dropdown -->
-        <div class="dropdown">
-          <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-            Profile
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
 
-            <li><a class="dropdown-item" routerLink='/signin' routerLinkActive="active">Log Out</a></li>
+
+
+
+
+
+
+        <div class="dropdown">
+          <button class="dropdown-toggle" (click)="toggleDropdown()">
+            <img src="assets/image/user.png" alt="Logo" class="logo">
+          </button>
+          <ul class="dropdown-menu" [class.show]="isDropdownOpen">
+            <li><a  routerLink='/welcomepage'>LogOut</a></li>
           </ul>
         </div>
-
 
 
 
@@ -86,11 +116,12 @@
     <!-- Container wrapper -->
 
   </nav>
+
   <!-- Navbar -->
 </header>
 <!--Main Navigation-->
 
-<app-search></app-search>
+
 <body>
 
 
@@ -131,7 +162,7 @@
 
    </div> -->
    <div [ngClass]="{'content-expand': isMenuOpen, 'content-wrapper': !isMenuOpen}" >
-   <div class="bluebar_expand" style="width:100%;margin-top: -3%;"
+   <div class="bluebar_expand"
 
    [ngClass]="{
 
@@ -145,11 +176,11 @@
 
   <div class="row" >
 
-    <div class="col-lg-8 text-white col-md-6 col-sm-6">
+    <div class="col-lg-8 text-white col-md-6 col-sm-6" data-bs-toggle="modal" data-bs-target="#MyModal">
 
       <!-- <h5 class="small-text" style="padding-top: 20px;">You are currently logged in via {{this.roleName}} login</h5> -->
 
-      <h2 style="padding-top: 50px;">Welcome </h2>
+      <h2 style="padding-top: 50px;">Welcome  {{pat.name}} </h2>
 
       <p>This is your personal profile.<br>
 
@@ -216,23 +247,23 @@
     <!-- </a> -->
   <!-- </div> -->
 
-  <div class="score_card1">
-    <div class="row1">
-      <a routerLink="/docprofile/8"
-      routerLinkActive="active">
-             <div class="card-body" style="background-color: rgb(253, 253, 253);  border-radius: 10px; ">
+  <div class="score_card" (click)="profile()">
+    <div class="row">
+
+             <div class="card-body" >
       <h3 style="text-align: center;">Doctor List</h3>
       <div >
 
         <!-- <h3 class="score_name">{{val.name}}</h3> -->
         <!-- <p class="total_score"> {{ counterMap[val.moduleName] }}</p> -->
-        <p class="list" style="font-size: x-large;">{{ counterMap[lastValue] }}</p>
+        <p class="list" style="font-size: x-large;    margin-left: 45%;">{{ counterMap[lastValue] }}</p>
 
 
         <!-- <p class="total_score" > {{ val.id}}</p> -->
       </div>
      </div>
-    </a>
+
+    </div>
 
     </div>
   </div>
@@ -240,6 +271,123 @@
   </div>
 </div>
 
+
+
+
+<div class="modal fade" id="MyModal" tabindex="-10" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <!-- Form fields -->
+          <div class="mb-3">
+            <label for="name" class="form-label">PatientID</label>
+            <span type="text" class="form-control" id="name" >{{pat.id}}</span>
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <span type="text" class="form-control" id="name" >{{pat.name}}</span>
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Email</label>
+            <span type="text" class="form-control" id="email" >{{pat.email}}</span>
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Contact NO</label>
+            <span type="text" class="form-control" id="contactno" >{{pat.contactno}}</span>
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Gender</label>
+            <span type="text" class="form-control" id="gender" >{{pat.gender}}</span>
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">State</label>
+            <span type="text" class="form-control" id="state" >{{pat.state}}</span>
+          </div>
+          <!-- Add more form fields as needed -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Submit</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="mymodal" tabindex="-10" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Appointment</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <!-- Form fields -->
+          <div class="row">
+            <div class="col-md-6">
+          <!-- <div class="mb-3">
+            <label for="name" class="form-label">PatientID</label>
+            <span type="text" class="form-control" id="name" >{{pat.id}}</span>
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <span type="text" class="form-control" id="name" >{{pat.name}}</span>
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Email</label>
+            <span type="text" class="form-control" id="email" >{{pat.email}}</span>
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Contact NO</label>
+            <span type="text" class="form-control" id="contactno" >{{pat.contactno}}</span>
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Gender</label>
+            <span type="text" class="form-control" id="gender" >{{pat.gender}}</span>
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">State</label>
+            <span type="text" class="form-control" id="state" >{{pat.state}}</span>
+          </div> -->
+          <div class="col-mb-3">
+            <label for="name" class="form-label">Age</label>
+            <input type="number" name="age" class="form-control" placeholder="age" [(ngModel)]="appointment.age"  #age="ngModel"
+            [class.is-invalid]="age.invalid"/>
+          </div>
+          <div class="col-md-6 ">
+
+              <label>DOA</label>
+                <input type="date" name="date" class="form-control" placeholder="date" [(ngModel)]="appointment.dates"  #dates="ngModel"
+                    [class.is-invalid]="dates.invalid"/>
+            </div>
+          </div>
+          <div class="col-md-6 ">
+
+              <label>Reason</label>
+                <input type="text" name="disease" class="form-control" placeholder="reason" [(ngModel)]="appointment.disease"  #disease="ngModel"
+                    [class.is-invalid]="disease.invalid"/>
+            </div>
+          </div>
+
+
+          <!-- Add more form fields as needed -->
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-btn-primary" (click)="createapp()">Submit</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Submit</button> -->
+      </div>
+    </div>
+  </div>
+</div>
 
               <!-- <div >
 
@@ -304,7 +452,7 @@
   </div>
 
         </div>
-      </div>
+
   </body>
 
   <style>
@@ -397,7 +545,7 @@
 
       height: 165px;
 
-      background-color: #ffffff;
+      background-color: #f0f0f0;
 
       border-radius: 10px;
 
@@ -407,6 +555,14 @@
 
       color: #000000;
 
+      cursor: pointer;
+
+
+  }
+
+  .score_card:hover{
+    color: #ffffff;
+    background-color: rgb(0, 38, 165);
   }
   .score_card_inner:focus {
 

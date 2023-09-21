@@ -1,10 +1,14 @@
 import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuService } from 'src/app/menu.service';
-import { NavsideService } from 'src/app/navside.service';
+
+
 import { PatientService } from '../../patient.service';
 import { Patient } from 'src/app/patient'
 import { AppointmentService } from 'src/app/appointment.service';
+import { Doctor } from '../../doctor';
+import { MenuserviceService } from 'src/app/menuservice.service';
+import { NavserviceService } from 'src/app/navservice.service';
+import { DoctorService } from '../../doctor.service';
 
 @Component({
   selector: 'app-doctordashboard',
@@ -14,12 +18,13 @@ import { AppointmentService } from 'src/app/appointment.service';
 export class DoctordashboardComponent  implements OnInit{
 
 
+
   lastValue:any;
   patient:Patient=new Patient();
   lastValue1:any;
-  // collapses: boolean=false;
-   isMenuOpen: boolean;
-
+  collapses: boolean=true;
+  // isMenuOpen: boolean;
+Doctor:any;
    isScrolled=false;
    counterMap: { [moduleName: number]: number } = {};
   filteredItems: any;
@@ -27,7 +32,16 @@ export class DoctordashboardComponent  implements OnInit{
   Patient: any;
 val: any;
 filteredItems1: any;
-
+checkSidebar:boolean=false;
+openNav: any;
+ isMenuOpen:boolean=false;
+customizer: any;
+toggletNavActive:boolean=true;
+value:any;
+pat:any;
+isDropdownOpen:boolean=false;
+isDarkMode = false;
+themeService: any;
 
 
   // @Input()
@@ -39,11 +53,28 @@ filteredItems1: any;
   // private _counterSub$ = new Subject();
   // private _onDestroy$ = new Subject();
 
-  constructor(public router:Router, public navsideservice:NavsideService,public menuservice:MenuService,
-   private patienservice:PatientService, private appoint:AppointmentService   ){}
+  constructor(public router:Router, public navService:NavserviceService,public menuService:MenuserviceService,
+   private patienservice:PatientService, private appoint:AppointmentService ,public doctorservice:DoctorService){
+
+   }
 
      @ViewChild('blueheader') blueheader!: ElementRef<HTMLElement>;
      ngOnInit(): void {
+
+
+      this.pat=JSON.parse(this.doctorservice.getprofile());
+      this.value=this.pat.firstName;
+
+       console.log(this.value);
+
+       this.doctorservice.getdoctorById(this.pat.id).subscribe(data => {
+        console.log(data);
+       });
+
+      this.menuService.isMenuOpen$.subscribe(isOpen => {
+
+        this.isMenuOpen = isOpen;
+      });
       this.onWindowScroll();
       this.getview();
 
@@ -80,6 +111,11 @@ filteredItems1: any;
       );
      }
 
+
+     toggleTheme() {
+      this.isDarkMode = !this.isDarkMode;
+    }
+
       startTimer(moduleName: any) {
         const lastIndex = this.filteredItems.length;
         this.lastValue = lastIndex;
@@ -99,6 +135,9 @@ filteredItems1: any;
         }
       }
 
+      toggleDropdown() {
+        this.isDropdownOpen = !this.isDropdownOpen;
+      }
       startTimer1(moduleName1: any) {
         const lastIndex1 = this.filteredItems1.length;
         this.lastValue1 = lastIndex1;
@@ -118,13 +157,20 @@ filteredItems1: any;
         }
       }
 
+patients(){
+  this.router.navigate(['patientlist'])
 
+}
 
-// collopse() {
-//   this.collapses=!this.collapses
-//   console.log(this.collapses);
+appoints(){
+  this.router.navigate(['doctorpath'])
+}
 
-//}
+collopse() {
+  this.collapses=!this.collapses
+  console.log(this.collapses);
+
+}
 
 // ngOnDestroy() {
 //   this._onDestroy$.next();
@@ -168,6 +214,7 @@ element.classList.add('bluebar_expand');
 
 }
 
+
     patientview() {
      this.router.navigate(['/patientlist'])
       }
@@ -175,4 +222,35 @@ element.classList.add('bluebar_expand');
       //   this.router.navigate(['/doctorspace/8'])
       // }
 
+      collapseSidebar() {
+       this.navService.collapseSidebar = !this.navService.collapseSidebar
+        if (!this.checkSidebar) {
+          this.menuService.toggleSidebar();
+        }
+        // if (!this.navService.collapseSidebar) {
+        //   window.location.reload(); // Refresh the current page
+        // }
+       // this.checkSidebar=true;
+      }
+      collapseSidebar1(){
+        this.navService.collapseSidebar = !this.navService.collapseSidebar
+        console.log(this.checkSidebar);
+        if (this.checkSidebar) {
+          this.menuService.toggleSidebar();
+        }
+        //this.checkSidebar=false;
+      }
+
+    //   toggletNavActive() {
+    //  this.checkSidebar=!this.checkSidebar
+    //     console.log(this.checkSidebar);
+    //   }
+
+     toggleMenu(){
+      this.isMenuOpen=!this.isMenuOpen;
+     }
+
+     logout(): void {
+      this.patienservice.logout();
+    }
 }

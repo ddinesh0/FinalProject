@@ -16,6 +16,8 @@ export class SigninComponent implements OnInit{
   admin:Admin=new Admin();
   doctor:Doctor=new Doctor();
   patient:Patient=new Patient();
+value:any;
+value1:any;
 
 
 
@@ -31,69 +33,63 @@ ngOnInit(): void {
 
 
 }
-public adminLogin(){
+ adminLogin(){
   this.adminService.loginAdmin(this.admin).subscribe((data:any)=>{
-    //if(admin)
    console.log("Registered Successfully"),
    this.router.navigate(['admin'])
   });
   }
+
   public doctorLogin(){
     this.doctorservice.logindoctor(this.doctor).subscribe((data:any)=>{
-      console.log("Doctor login sucessfully"),
-      this.router.navigate(['dashboard'])
+      this.value1=data;
+      console.log(this.value1)
+
+      console.log("Doctor login sucessfully",this.value1.firstName);
+      const myObjectString = JSON.stringify(this.value1);
+      this.doctorservice.setprofile(myObjectString);
+      this.router.navigate(['dashboard',{firstName:this.value1}])
     });
   }
+
   patientlog() {
  this.patientservice.patientlogin(this.patient).subscribe((data:any)=>{
-  console.log("patient login sucessfully"),
-  this.router.navigate(['patientdash'])
- })
+   this.value = data;
+  console.log(this.value);
+
+  console.log("patient login sucessfully",this.value.name );
+  const myObjectString = JSON.stringify(this.value);
+  this.patientservice.setprofile(myObjectString);
+
+  this.router.navigate(['patientdash',{id:this.value}])
+ },
+ (error: any) => {
+  console.log("Error logging in patient:", error);
+  // Handle the error if necessary
+});
     }
 
 
+    // public patientLogin(id: number) {
+    //   const patient = this.patientservice.getbypatientid(id);
 
-  public Signin( adminEmailId: String,adminPassword: String,email: String,password: String ){
+    //   if (patient) {
+    //     this.patientservice.registerPatient(this.patient).subscribe((data: any) => {
+    //       console.log("Patient login successful");
+    //       this.router.navigate(['patientdash']);
+    //     });
+    //   } else {
+    //     console.log("Patient not found");
 
-    console.log(adminEmailId);
-    console.log(adminPassword);
-    console.log(password);
-    console.log(email);
-
-
-      // if(adminEmailId!=="" && adminPassword!=="" )
-      // {
-      //   console.log("success");
-
-
-      // if(email=="" && password=="Hendryten12")
-      // {
-      //   console.log("doctor log sucuessfully");
-      //   this.router.navigateByUrl('/dashboard');
-
-
-
-      // }
-      // if(adminEmailId=="dinesh01@gmail.com"&& adminPassword=="Dinesh12"){
-
-      //   console.log("admin log sucuessfully");
-      //   this.router.navigateByUrl("/admin")
-      // }
-
+    //   }
+    // }
 
 
 
 
   }
-  // else{
-  //   this.router.navigateByUrl('/login');
-  // }
 
 
-
-  //   this.router.navigate(['/admin']);
-  //  }
-  }
 
 
 

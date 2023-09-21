@@ -32,7 +32,7 @@ constructor(private router:Router,public patientservice:PatientService){
     this.patientservice.registerPatient(this.patient).subscribe((data:any)=>{
 
       console.log("Registered Successfully")
-      if(confirm("Please wait admin will contact you" ))
+      if(confirm("Registered Successfully"))
       this.router.navigate(['welcomepage'])
 
 

@@ -2,6 +2,7 @@
 <header>
   <app-admin></app-admin>
 
+  <div [ngClass]="{'content-expand': isMenuOpen, 'content-wrapper': !isMenuOpen}" >
 <header class="modal-body">
   <body>
     <nav class="navbar navbar-expand-sm navbar-da" style="background-color:whitesmoke">

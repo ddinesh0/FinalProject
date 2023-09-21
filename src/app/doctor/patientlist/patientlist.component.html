@@ -1,10 +1,18 @@
+
+<header>
+  <h2>Patient List</h2>
+</header>
+
 <div class="overlay" *ngIf="show">
-  <div class="content">
-    <div class="close" (click)="closepopup()">
-      &times;
-    </div>
-    <table class="table color-bordered-table theme-bordered-table">
-      <thead>
+
+  <div class="conten">
+<button class="close-button" (click)="closepopup()">X</button>
+
+
+
+    <table class="table color-bordered-table theme-bordered-table" id="PatientTable">
+      <thead><h2 style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; text-align: center;">Patient List</h2>
+        <app-search (searchTextChanged)="OnsearchTextChanged($event)"></app-search>
           <tr>
               <th>Id</th>
               <th> Name</th>
@@ -15,25 +23,25 @@
               <th>State</th>
               <th>Country</th>
               <th>City</th>
-              <th>Password</th>
+              <!-- <th>Password</th> -->
               <th>Email</th>
           </tr>
       </thead>
       <tbody>
         <!-- <div   class="row" *ngIf="searchText ===''||patient.name.toLowerCase().includes(searchText)"> -->
-          <tr *ngFor="let patient of Patient">
+          <tr *ngFor="let patient of Patient | paginate: { itemsPerPage: 5, currentPage: currentPage }">
 
-              <td >{{patient.id}}</td>
-              <td >{{patient.name}}</td>
-              <td >{{patient.dob}}</td>
-              <td >{{patient.gender}}</td>
-              <td >{{patient.contactno}}</td>
-              <td >{{patient.address}}</td>
-              <td >{{patient.state}}</td>
-              <td >{{patient.country}}</td>
-              <td >{{patient.city}}</td>
-              <td >{{patient.password}}</td>
-              <td >{{patient.email}}</td>
+              <td *ngIf="matchesSearchText(patient)" >{{patient.id}}</td>
+              <td *ngIf="matchesSearchText(patient)">{{patient.name}}</td>
+              <td *ngIf="matchesSearchText(patient)">{{patient.dob}}</td>
+              <td *ngIf="matchesSearchText(patient)">{{patient.gender}}</td>
+              <td *ngIf="matchesSearchText(patient)">{{patient.contactno}}</td>
+              <td *ngIf="matchesSearchText(patient)">{{patient.address}}</td>
+              <td *ngIf="matchesSearchText(patient)">{{patient.state}}</td>
+              <td *ngIf="matchesSearchText(patient)">{{patient.country}}</td>
+              <td *ngIf="matchesSearchText(patient)">{{patient.city}}</td>
+              <!-- <td >{{patient.password}}</td> -->
+              <td *ngIf="matchesSearchText(patient)">{{patient.email}}</td>
 
 
 
@@ -45,5 +53,15 @@
       </tbody>
 
   </table>
+  <!-- <ngb-pagination
+						[(page)]="page"
+						[pageSize]="pageSize"
+						[collectionSize]="Patient.length"></ngb-pagination>
+						<pre>Current page: {{page}}</pre> -->
+
+            <pagination-controls  (pageChange)="currentPage = $event"></pagination-controls>
+
+  <button (click)="excel()" class="btn-primary">Excel</button>
+  <!-- <button (click)="downloadpdf()" class="btn-primary">Pdf</button> -->
   </div>
 </div>

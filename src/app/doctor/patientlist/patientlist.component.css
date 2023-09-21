@@ -10,14 +10,30 @@
   align-items: center;
 
 }
-.content{
+.conten{
   background-color: cornsilk;
   width: 90%;
-  height: 70%;
+  height: 90%;
 padding: 20px;
+border-radius: 10px;
 
 }
 .close{
   margin-left: 95%;
   font-size: xx-large;
+}
+button.btn-primary {
+  margin-left: 20%;
+}
+.close-button {
+  background-color: transparent;
+  border: none;
+  color: red;
+  font-size: 20px;
+  cursor: pointer;
+  margin-left: 92%;
+}
+
+.close-button:hover {
+  color: rgb(0, 0, 0);
 }

@@ -16,7 +16,7 @@ export class AppointmentComponent implements OnInit{
 
 appointment:Appointment=new Appointment();
   id: number;
-  appointid:number;
+  //appointid:number;
 
 
 
@@ -39,15 +39,15 @@ this.patientService.getbypatientid(this.id).subscribe(data=>{
   }
 
   createapp(){
-   const data= {
-      "id":2,
-      "age":20,
-      "dates":"20/05/2023",
-      "disease":"fever",
-      "patient":{
-        "patientId":2
-      }
-    }
+  //  const data= {
+  //     "id":2,
+  //     "age":20,
+  //     "dates":"20/05/2023",
+  //     "disease":"fever",
+  //     "patient":{
+  //       "patientId":2
+  //     }
+  //   }
     this.appointmentservice.createapp(this.appointment,this.id,this.id).subscribe((data:any)=>{
       console.log(this.id)
       if(confirm("added sucessfull"))
