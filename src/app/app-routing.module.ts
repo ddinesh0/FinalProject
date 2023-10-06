@@ -26,7 +26,7 @@ import { AppointmentService } from './appointment.service';
 import { RegisterGuardService } from './Register-guard.service';
 
 const routes: Routes = [
-{path: 'welcomepage', component:WelcomeComponent},
+{path: '', component:WelcomeComponent},
 {path: 'signup', component:SignupComponent},
 {path: 'signin', component:SigninComponent},
 {path: 'admin',component:AdminComponent},
@@ -41,7 +41,7 @@ const routes: Routes = [
 {path:'patientview',component:PatientviewComponent},
 {path:'patientupdate/:id',component:PatientupdateComponent},
 {path:'doctorspace/:id',component:DoctorspaceComponent},
-{path:'userlogin',component:UserloginComponent,canActivate:[RegisterGuardService]},
+{path:'userlogin',component:UserloginComponent},
 {path:'appointment/:id',component:AppointmentComponent,canActivate:[AppointmentService]},
 {path:'appointmentlist',component:AppointmentlistComponent},
 {path:'doctorpath',component:DoctorpathComponent},
